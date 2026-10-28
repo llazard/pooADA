@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La POO en pratique</title>
+<style>
+/* Documents HTML a la charte : config/charte/documents.md. Les tailles reprennent celles
+   des anciens documents Word, en points. */
+:root {
+  --violet-fonce: #4f2d7f; --violet: #7c4dbc; --violet-clair: #ede7f6; --violet-tres-clair: #f6f2fb;
+  --bleu-fonce: #0d47a1; --bleu: #1976d2; --bleu-clair: #e3f1fd;
+  --vert-fonce: #1b6b3a; --vert: #388e3c; --vert-clair: #e8f5e9;
+  --orange-fonce: #e65100; --orange: #f57c00; --orange-clair: #fff3e0;
+  --texte: #222222; --attenue: #6a6a6a; --cellule: #f7f7f7;
+  --code: #3a2a55; --code-fond: #f4f1f9; --code-filet: #d9cceb;
+  --police: Calibri, Carlito, "Segoe UI", Arial, sans-serif;
+  --mono: Consolas, "Cascadia Mono", "Courier New", monospace;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--cellule); }
+body { margin: 0; padding: 24px 16px; font: 10.5pt/1.35 var(--police); color: var(--texte); background: var(--cellule); }
+
+.feuille {
+  max-width: 210mm; margin: 0 auto; padding: 19mm; background: #fff;
+  overflow-wrap: break-word;
+}
+.une-page .feuille { min-height: 297mm; padding: 14mm 19mm 12mm; }
+
+.entete {
+  display: flex; justify-content: space-between; gap: 1em; flex-wrap: wrap;
+  font-size: 9pt; color: var(--violet); border-bottom: 1.5px solid var(--violet);
+  padding-bottom: 4px; margin-bottom: 18px;
+}
+.entete span:first-child { color: var(--violet-fonce); }
+
+h1 { font-size: 20pt; line-height: 1.15; color: var(--violet-fonce); margin: 0 0 6px; }
+.sous-titre { font-size: 12pt; font-style: italic; color: var(--violet-fonce); margin: 0 0 6px; }
+.contexte { font-size: 9pt; color: var(--attenue); margin: 0 0 10px; }
+h2 {
+  font-size: 13pt; color: var(--violet); margin: 20px 0 8px; padding-bottom: 3px;
+  border-bottom: 1.5px solid var(--violet);
+}
+h3 { font-size: 11pt; color: var(--violet-fonce); background: var(--violet-clair); margin: 16px 0 8px; padding: 3px 8px; }
+h4 { font-size: 11pt; color: var(--violet-fonce); margin: 14px 0 6px; }
+
+p { margin: 0 0 7px; }
+.chapo > strong:first-child { color: var(--violet); }
+.une-page strong { color: var(--violet-fonce); }
+a { color: var(--bleu-fonce); }
+
+ul, ol { margin: 0 0 8px; padding-left: 22px; }
+li { margin: 0 0 3px; }
+ul > li::marker { color: var(--violet); }
+ol > li::marker { color: var(--violet); font-weight: 700; }
+li.case { list-style: none; margin-left: -16px; }
+
+code { font-family: var(--mono); font-size: 0.9em; color: var(--code); }
+pre {
+  font: 9pt/1.4 var(--mono); color: var(--code); background: var(--code-fond);
+  border-left: 3px solid var(--code-filet); padding: 8px 10px; margin: 0 0 9px;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+pre code { font-size: inherit; }
+
+table { width: 100%; border-collapse: collapse; margin: 0 0 10px; font-size: 10pt; }
+th, td { border: 1px solid var(--violet); padding: 4px 7px; text-align: left; vertical-align: top; }
+th { background: var(--violet); color: #fff; }
+tbody tr:nth-child(odd) td { background: var(--cellule); }
+
+/* parole du commanditaire : violet, hors comptage des rangs */
+.citation {
+  margin: 8px 0 10px; padding: 6px 10px; background: var(--violet-clair);
+  border-left: 4px solid var(--violet); font-style: italic; color: var(--violet-fonce);
+}
+.citation p:last-child, .encart p:last-child, .encart ul:last-child { margin-bottom: 0; }
+
+/* encarts : couleur de rang dans le bloc */
+.encart { margin: 8px 0 10px; padding: 6px 10px; font-size: 10pt; border-left: 4px solid; }
+.encart-bleu { background: var(--bleu-clair); border-color: var(--bleu); }
+.encart-bleu .libelle { color: var(--bleu-fonce); }
+.encart-vert { background: var(--vert-clair); border-color: var(--vert); }
+.encart-vert .libelle { color: var(--vert-fonce); }
+.encart-orange { background: var(--orange-clair); border-color: var(--orange); }
+.encart-orange .libelle { color: var(--orange-fonce); }
+.encart-violet { background: var(--violet-clair); border-color: var(--violet); }
+.encart-violet .libelle { color: var(--violet-fonce); }
+
+/* carte de user story : violet, deux tons, un seul filet */
+.story { margin: 10px 0 12px; border-left: 4px solid var(--violet); font-size: 10pt; break-inside: avoid; }
+.story-phrase { background: var(--violet-clair); padding: 6px 10px; }
+.story-phrase strong:first-child { color: var(--violet-fonce); }
+.story-criteres { background: var(--cellule); padding: 6px 10px; }
+.story-libelle { font-style: italic; color: var(--violet-fonce); margin-bottom: 3px; }
+.story p:last-child, .story ul:last-child { margin-bottom: 0; }
+
+.alerte {
+  max-width: 210mm; margin: 0 auto 12px; padding: 8px 12px; background: var(--orange-clair);
+  border-left: 4px solid var(--orange); color: #b53d00; font-weight: 700;
+}
+
+/* memo d'une page : interlignes resserres */
+.une-page { line-height: 1.25; }
+.une-page h1 { margin-bottom: 4px; }
+.une-page h2 { margin: 10px 0 5px; }
+.une-page h3, .une-page h4 { margin: 9px 0 5px; }
+.une-page p { margin-bottom: 4px; }
+.une-page li { margin-bottom: 1px; }
+.une-page pre { line-height: 1.3; padding: 5px 9px; margin-bottom: 6px; }
+.une-page table { margin-bottom: 6px; }
+.une-page th, .une-page td { padding: 3px 6px; }
+
+@media (max-width: 600px) {
+  body { padding: 0; }
+  .feuille, .une-page .feuille { padding: 20px 16px; min-height: 0; }
+  table { display: block; overflow-x: auto; }
+}
+
+/* impression A4 : en tete et numero de page dans les marges */
+@page {
+  size: A4; margin: 19mm;
+  @top-left { content: "La POO en pratique"; font: 9pt Calibri, Carlito, sans-serif; color: #4f2d7f; vertical-align: bottom; padding-bottom: 6px; border-bottom: 1.5px solid #7c4dbc; }
+  @top-right { content: "Formatrice Développeuse / Lucie LAZARD"; font: 9pt Calibri, Carlito, sans-serif; color: #7c4dbc; vertical-align: bottom; padding-bottom: 6px; border-bottom: 1.5px solid #7c4dbc; }
+  @bottom-left { content: counter(page); font: 8pt Calibri, Carlito, sans-serif; color: #4f2d7f; vertical-align: top; padding-top: 6px; border-top: 1px solid #7c4dbc; }
+}
+@page memo { margin: 14mm 19mm 12mm; }
+.une-page .feuille { page: memo; }
+
+@media print {
+  html, body { background: #fff; padding: 0; }
+  .feuille, .une-page .feuille { max-width: none; padding: 0; min-height: 0; }
+  .entete, .alerte { display: none; }
+  h2, h3, h4 { break-after: avoid; }
+  pre, table, .encart, .citation { break-inside: avoid; }
+  th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+</style>
+</head>
+<body class="multi-pages">
+<main class="feuille">
+<header class="entete"><span>La POO en pratique</span><span>Formatrice Développeuse / Lucie LAZARD</span></header>
+<h1>La POO en pratique</h1>
+<p>Ada Tech School · Spé Dev · J5 · les quatre piliers, l'héritage et les interfaces</p>
+<h2>Rappel</h2>
+<p><em>La POO, c'est quoi ? Pourquoi ?</em></p>
+<h3>La POO, c'est quoi ?</h3>
+<p>La POO, programmation orientée objet, organise le code en s'inspirant du monde réel : chaque entité du monde réel devient un <strong>objet</strong> dans le programme.</p>
+<ul><li><strong>Les attributs</strong> : les caractéristiques de l'objet. Un nom, un âge, un pelage…</li><li><strong>Les méthodes</strong> : les actions de l'objet. Se déplacer, manger, se présenter…</li><li><strong>La classe</strong> : le moule qui sert à fabriquer les objets. Elle définit leurs attributs et leurs méthodes, mais ce n'est pas encore un objet.</li></ul>
+<p>La classe est le moule, l'objet est ce qui sort du moule.</p>
+<h3>Une classe, des objets</h3>
+<p>La classe Animal se définit une fois. On en crée ensuite autant d'objets qu'on veut : Rex, Félix, Nemo… Chaque objet a <strong>ses propres valeurs</strong>, mais tous suivent le <strong>même modèle</strong>.</p>
+<h3>Pourquoi la POO ?</h3>
+<p class="chapo"><strong>Sans POO, comme vous l'avez souvent fait en JavaScript</strong> : une variable par caractéristique et par entité.</p>
+<ul><li><code>nameAnimal1</code>, <code>ageAnimal1</code>, <code>coatAnimal1</code></li><li><code>nameAnimal2</code>, <code>ageAnimal2</code>, <code>coatAnimal2</code></li><li>…</li></ul>
+<p>50 animaux, 10 caractéristiques chacun : 500 variables. De la duplication, et des erreurs.</p>
+<p class="chapo"><strong>Avec la POO</strong> :</p>
+<ul><li><strong>Organisation</strong> : chaque concept regroupé dans une classe.</li><li><strong>Réutilisabilité</strong> : on écrit une fois, on réutilise partout.</li><li><strong>Lisibilité</strong> : le code ressemble au monde réel.</li><li><strong>Maintenabilité</strong> : une modification se fait à un seul endroit.</li></ul>
+<h2>Comment l'utiliser ?</h2>
+<p><em>Du général au spécifique</em></p>
+<h3>Deux sortes de classes</h3>
+<ul><li><strong>Les classes génériques</strong> : elles <strong>définissent</strong> ce que plusieurs classes ont en commun. On ne crée pas d'objet à partir d'elles. Ce sont les classes dont on hérite, et les interfaces.</li><li><strong>Les classes concrètes</strong> : elles <strong>rentrent dans le détail</strong>. Ce sont elles qu'on utilise pour créer des objets.</li></ul>
+<p>On part d'une idée générale commune, pour aller vers le plus spécifique.</p>
+<h3>Un exemple : les animaux</h3>
+<p class="chapo"><strong>Animal</strong> regroupe ce que tous les animaux ont en commun : un pelage, un cri, un nombre de pattes, un habitat, un régime alimentaire. Mais impossible de tout remplir sans en savoir plus.</p>
+<p>On affine :</p>
+<ul><li><strong>Mammifère</strong> : il se reproduit en vivipare.</li><li><strong>Poisson</strong> : il a des écailles, il vit dans l'eau, il nage.</li><li><strong>Oiseau</strong> : il a des plumes, il vole.</li></ul>
+<h3>Jusqu'aux classes concrètes</h3>
+<ul><li><strong>Chien</strong> : un mammifère terrestre, qui aboie.</li><li><strong>Saumon</strong> : un poisson, muet, carnivore.</li><li><strong>Poule</strong> : un oiseau, qui caquette… et qui marche !</li></ul>
+<p>Tout est enfin défini : je peux créer mes premiers objets.</p>
+<h2>Les piliers de la POO</h2>
+<p><em>Encapsulation, abstraction, héritage, polymorphisme</em></p>
+<h3>Les 4 piliers en un coup d'œil</h3>
+<ul><li><strong>Encapsulation</strong> : regrouper les attributs et les méthodes dans une classe, en restreignant l'accès direct aux données internes.</li><li><strong>Abstraction</strong> : exposer l'essentiel d'un objet, et cacher son fonctionnement interne.</li><li><strong>Héritage</strong> : une classe fille réutilise ce que sa classe mère expose, et peut compléter ou redéfinir ses comportements.</li><li><strong>Polymorphisme</strong> : un même appel peut produire des comportements différents, selon l'objet ou selon les paramètres.</li></ul>
+<h3>L'encapsulation</h3>
+<p>Regrouper les attributs et les méthodes d'un objet dans une classe, <strong>en restreignant l'accès direct</strong> à ses données internes.</p>
+<ol><li><strong>Le constructeur contrôle la création</strong> : il vérifie que les valeurs de départ sont valides, avant même que l'objet existe. Un âge négatif est refusé.</li><li><strong><code>private</code> maintient la protection après la création</strong> : sans lui, n'importe quel code pourrait modifier l'âge et contourner le constructeur.</li><li><strong>Les getters et setters filtrent les accès</strong> : ils peuvent valider, transformer, ou ne pas exister. Ce sont des points de contrôle, pas de simples relais.</li></ol>
+<p>L'encapsulation garantit que l'objet reste cohérent tout au long de sa vie.</p>
+<h3>L'abstraction</h3>
+<p>Trois mots qui se ressemblent et qu'on confond facilement :</p>
+<ul><li><strong>L'abstraction, le pilier</strong> : une idée générale. Exposer l'essentiel, cacher le détail. C'est un principe, pas une syntaxe.</li><li><strong>La classe abstraite</strong> : un outil de ce principe. Animal est un concept, pas une réalité : on ne crée pas un « animal générique ». Elle sert de base commune, incomplète par nature.</li><li><strong>La méthode abstraite</strong> : une méthode sans corps. Chaque animal a un cri, mais Animal ne dit pas lequel : chaque fille doit écrire le sien. C'est un contrat.</li></ul>
+<h3>L'héritage</h3>
+<p>Une classe fille réutilise ce que sa classe mère expose, et peut <strong>compléter ou redéfinir</strong> ses comportements. En Java, avec le mot-clé <code>extends</code>.</p>
+<p>Le Chat hérite de Mammifère, qui hérite d'Animal : il a déjà un pelage, quatre pattes, il vit sur terre et il est vivipare. Il n'a plus qu'à dire qu'il miaule.</p>
+<h3>L'héritage, ce qu'on oublie souvent</h3>
+<ul><li><strong>Le lien de famille</strong> : <code>extends</code> dit « le Chat est un Mammifère ».</li><li><strong>Les constructeurs ne s'héritent pas</strong> : la fille doit transmettre à la mère ce dont elle a besoin, en appelant son constructeur avec <code>super(...)</code>.</li><li><strong>Les attributs privés de la mère</strong> existent bien dans l'objet de la fille, mais elle n'y accède que par les méthodes de la mère. L'héritage et l'encapsulation fonctionnent ensemble.</li><li><strong>La fille peut ajouter</strong> ses propres attributs : le Chien a un nom, qui n'existe pas dans Animal.</li></ul>
+<h3>Le polymorphisme</h3>
+<p>Un même nom de méthode peut produire des <strong>comportements différents</strong>. Deux formes :</p>
+<ul><li><strong>La redéfinition</strong> : la fille réécrit une méthode héritée, avec la même signature. L'Oiseau se déplace en volant, la Poule redéfinit le déplacement : elle marche. Java choisit à l'exécution, selon l'objet réel.</li><li><strong>La surcharge</strong> : plusieurs méthodes du même nom, avec des paramètres différents. Manger, manger un aliment, manger une quantité d'un aliment. Java choisit selon les paramètres donnés.</li></ul>
+<p>L'héritage donne un comportement par défaut, le polymorphisme permet de l'adapter. Il en existe d'autres formes : celles-ci sont les deux que vous utiliserez tous les jours.</p>
+<h3>L'interface</h3>
+<p>Une interface est <strong>un contrat</strong> : une liste de méthodes qu'une classe s'engage à écrire, sans dire comment.</p>
+<p>Le Saumon, la Baleine, le Chien et le Canard savent tous nager, sans être de la même famille. Une interface « Nageur » le dit, quelle que soit leur classe mère.</p>
+<p>Une classe n'a qu'une mère, mais peut suivre <strong>plusieurs</strong> interfaces.</p>
+<h3>Interface ou héritage ?</h3>
+<table>
+<thead><tr><th></th><th>Héritage</th><th>Interface</th></tr></thead>
+<tbody>
+<tr><td>La question</td><td>« est un »</td><td>« sait faire »</td></tr>
+<tr><td>Ce qu'on partage</td><td>des attributs et des méthodes</td><td>un contrat, sans attribut</td></tr>
+<tr><td>Combien</td><td>une seule mère</td><td>autant qu'on veut</td></tr>
+<tr><td>Exemple</td><td>le Chien est un Mammifère</td><td>le Chien sait nager, comme le Canard</td></tr>
+</tbody>
+</table>
+<p>Le doute ? Si la phrase « X est un Y » sonne faux, c'est une interface.</p>
+<h3>Le vrai critère de maîtrise</h3>
+<p>Si vous savez expliquer <strong>pourquoi</strong> votre code fonctionne, vous connaissez le concept.</p>
+<ul><li><strong>Nommer, pour communiquer</strong> : dire « ici, j'ai utilisé le polymorphisme » en revue de code ou en entretien.</li><li><strong>Comprendre, pour concevoir</strong> : choisir le bon outil pour le bon problème.</li><li><strong>Expliquer, pour maîtriser</strong> : justifier chaque ligne à un pair.</li></ul>
+<h3>À retenir</h3>
+<ul><li>Une classe est un moule : on la définit une fois, on en crée autant d'objets qu'on veut.</li><li>Des classes génériques qui définissent, des classes concrètes qui rentrent dans le détail.</li><li>L'héritage dit « est un », l'interface dit « sait faire ».</li><li>Le polymorphisme : la redéfinition à l'exécution, la surcharge selon les paramètres.</li><li>La classe abstraite est un outil de l'abstraction, l'interface en est un autre.</li></ul>
+<h3>Le reflexion.md, pourquoi ?</h3>
+<ul><li><strong>Quand</strong> : à la fin de chaque exercice.</li><li><strong>Où</strong> : un fichier <code>reflexion.md</code>, une section par exercice.</li><li><strong>Quoi</strong> : les questions de la fiche, en quelques lignes, sans rédaction.</li></ul>
+<p>C'est le livrable de la journée, à rendre en fin de journée.</p>
+</main>
+
+</body>
+</html>
