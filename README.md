@@ -42,3 +42,9 @@ propre package de `src/`, avec son `Main`.
 
 À la fin de chaque exercice, répondez aux questions de la fiche dans un fichier
 `reflexion.md`, une section par exercice. C'est le livrable de la journée.
+
+## Exercice 3 : les salariés
+
+La fiche : `ressources/Fiche_3_Salaries.html`. Le code fourni : `src/employees/`. Lancez
+`employees.Main` pour la question 0.
+Après la correction : `ressources/Cours_Exercice_3.html`, ce qu'il faut retenir.
