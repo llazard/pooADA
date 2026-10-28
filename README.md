@@ -39,3 +39,10 @@ propre package de `src/`, avec son `Main`.
 
 À la fin de chaque exercice, répondez aux questions de la fiche dans un fichier
 `reflexion.md`, une section par exercice. C'est le livrable de la journée.
+
+## Exercice 3 : les salariés
+
+La fiche : [Fiche_3_Salaries.html](https://htmlpreview.github.io/?https://github.com/llazard/pooADA/blob/exercice-3-salaries/ressources/Fiche_3_Salaries.html). Le code fourni : `src/employees/`. Lancez
+`employees.Main` pour la question 0.
+
+Après la correction, ce qu'il faut retenir : [Cours_Exercice_3.html](https://htmlpreview.github.io/?https://github.com/llazard/pooADA/blob/exercice-3-salaries/ressources/Cours_Exercice_3.html).
