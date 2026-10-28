@@ -39,3 +39,10 @@ propre package de `src/`, avec son `Main`.
 
 À la fin de chaque exercice, répondez aux questions de la fiche dans un fichier
 `reflexion.md`, une section par exercice. C'est le livrable de la journée.
+
+## Exercice 1 : l'équipe de héros
+
+La fiche : [Fiche_1_Heros.html](https://htmlpreview.github.io/?https://github.com/llazard/pooADA/blob/exercice-1-heros/ressources/Fiche_1_Heros.html). Le code fourni : `src/heroes/`. Lancez
+`heroes.Main` pour la question 0.
+
+Après la correction, ce qu'il faut retenir : [Cours_Exercice_1.html](https://htmlpreview.github.io/?https://github.com/llazard/pooADA/blob/exercice-1-heros/ressources/Cours_Exercice_1.html).
