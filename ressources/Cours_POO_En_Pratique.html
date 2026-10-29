@@ -179,28 +179,37 @@ tbody tr:nth-child(odd) td { background: var(--cellule); }
 <ol><li><strong>Le constructeur contrôle la création</strong> : il vérifie que les valeurs de départ sont valides, avant même que l'objet existe. Un âge négatif est refusé.</li><li><strong><code>private</code> maintient la protection après la création</strong> : sans lui, n'importe quel code pourrait modifier l'âge et contourner le constructeur.</li><li><strong>Les getters et setters filtrent les accès</strong> : ils peuvent valider, transformer, ou ne pas exister. Ce sont des points de contrôle, pas de simples relais.</li></ol>
 <p>L'encapsulation garantit que l'objet reste cohérent tout au long de sa vie.</p>
 <h3>L'abstraction</h3>
+<p>Exposer l'essentiel d'un objet, et <strong>cacher son fonctionnement interne</strong> : celui qui l'utilise sait ce que l'objet fait, sans avoir besoin de savoir comment il le fait.</p>
 <p>Trois mots qui se ressemblent et qu'on confond facilement :</p>
 <ul><li><strong>L'abstraction, le pilier</strong> : une idée générale. Exposer l'essentiel, cacher le détail. C'est un principe, pas une syntaxe.</li><li><strong>La classe abstraite</strong> : un outil de ce principe. Animal est un concept, pas une réalité : on ne crée pas un « animal générique ». Elle sert de base commune, incomplète par nature.</li><li><strong>La méthode abstraite</strong> : une méthode sans corps. Chaque animal a un cri, mais Animal ne dit pas lequel : chaque fille doit écrire le sien. C'est un contrat.</li></ul>
 <h3>L'héritage</h3>
 <p>Une classe fille réutilise ce que sa classe mère expose, et peut <strong>compléter ou redéfinir</strong> ses comportements. En Java, avec le mot-clé <code>extends</code>.</p>
 <p>Le Chat hérite de Mammifère, qui hérite d'Animal : il a déjà un pelage, quatre pattes, il vit sur terre et il est vivipare. Il n'a plus qu'à dire qu'il miaule.</p>
+<p class="chapo"><strong>Une méthode écrite dans la mère est écrite une seule fois</strong> : toutes les filles l'ont, sans la recopier. Animal écrit <code>getName()</code> et <code>getInformation()</code> ; le Chien, le Chat et le Canard s'en servent sans en écrire une ligne.</p>
 <p class="chapo"><strong>La fille peut ajouter</strong> ses propres attributs : le Chien a un nom, qui n'existe pas dans Animal.</p>
+<p class="chapo"><strong>Les constructeurs ne s'héritent pas</strong> : la fille doit transmettre à la mère ce dont elle a besoin, en appelant son constructeur avec <code>super(...)</code>.</p>
+<p class="chapo"><strong>Les attributs privés de la mère</strong> existent bien dans l'objet de la fille, mais elle n'y accède que par les méthodes de la mère. L'héritage et l'encapsulation fonctionnent ensemble.</p>
 <h3>Le polymorphisme</h3>
-<p>Un même nom de méthode peut produire des <strong>comportements différents</strong>. Deux formes :</p>
+<p>Un même appel peut produire des <strong>comportements différents</strong>, selon l'objet qui le reçoit ou selon les paramètres qu'on lui donne. Deux formes :</p>
 <ul><li><strong>La redéfinition</strong> : la fille réécrit une méthode héritée, avec la même signature. L'Oiseau se déplace en volant, la Poule redéfinit le déplacement : elle marche. Java choisit à l'exécution, selon l'objet réel.</li><li><strong>La surcharge</strong> : plusieurs méthodes du même nom, avec des paramètres différents. Manger, manger un aliment, manger une quantité d'un aliment. Java choisit selon les paramètres donnés.</li></ul>
 <p>L'héritage donne un comportement par défaut, le polymorphisme permet de l'adapter. Il en existe d'autres formes : celles-ci sont les deux que vous utiliserez tous les jours.</p>
 <h2>Reprenons là où vous vous êtes arrêté·es</h2>
 <p><em>Les interfaces</em></p>
 <h3>L'interface</h3>
-<p>Une interface est <strong>un contrat</strong> : une liste de méthodes qu'une classe s'engage à écrire, sans dire comment.</p>
+<p>Une interface est <strong>un contrat</strong> : une liste de méthodes qu'une classe s'engage à écrire, sans dire comment. En Java, une classe la suit avec le mot-clé <code>implements</code>.</p>
+<p>Elle réutilise deux piliers de la POO :</p>
+<ul><li><strong>L'abstraction</strong> : elle dit ce qu'une classe sait faire, jamais comment. Comme une méthode abstraite, ses méthodes n'ont pas de corps.</li><li><strong>Le polymorphisme</strong> : une variable du type de l'interface peut contenir n'importe quelle classe qui la suit, et Java appelle la méthode de l'objet réel.</li></ul>
+<h3>Un exemple : les nageurs</h3>
 <p>Le Saumon, la Baleine, le Chien et le Canard savent tous nager, sans être de la même famille. Une interface « Nageur » le dit, quelle que soit leur classe mère.</p>
-<p>Une classe n'a qu'une mère, mais peut suivre <strong>plusieurs</strong> interfaces.</p>
+<p>Une classe n'a qu'une mère, mais peut suivre <strong>plusieurs</strong> interfaces : le Chien hérite d'Animal, et suit l'interface Nageur.</p>
+<p class="chapo"><strong>Une interface ne donne aucun code.</strong> Le Chien et le Canard héritent de <code>getName()</code>, écrite une fois dans Animal. Mais Nageur ne fait que déclarer <code>swim()</code> : chacun doit écrire la sienne. Une méthode peut être définie par un héritage, pas dans une interface.</p>
 <h3>Interface ou héritage ?</h3>
 <table>
 <thead><tr><th></th><th>Héritage</th><th>Interface</th></tr></thead>
 <tbody>
 <tr><td>La question</td><td>« est un »</td><td>« sait faire »</td></tr>
 <tr><td>Ce qu'on partage</td><td>des attributs et des méthodes</td><td>un contrat, sans attribut</td></tr>
+<tr><td>Le code des méthodes</td><td>écrit une fois dans la mère</td><td>écrit dans chaque classe</td></tr>
 <tr><td>Combien</td><td>une seule mère</td><td>autant qu'on veut</td></tr>
 <tr><td>Exemple</td><td>le Chien est un Mammifère</td><td>le Chien sait nager, comme le Canard</td></tr>
 </tbody>
