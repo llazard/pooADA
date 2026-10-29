@@ -184,12 +184,13 @@ tbody tr:nth-child(odd) td { background: var(--cellule); }
 <h3>L'héritage</h3>
 <p>Une classe fille réutilise ce que sa classe mère expose, et peut <strong>compléter ou redéfinir</strong> ses comportements. En Java, avec le mot-clé <code>extends</code>.</p>
 <p>Le Chat hérite de Mammifère, qui hérite d'Animal : il a déjà un pelage, quatre pattes, il vit sur terre et il est vivipare. Il n'a plus qu'à dire qu'il miaule.</p>
-<h3>L'héritage, ce qu'on oublie souvent</h3>
-<ul><li><strong>Le lien de famille</strong> : <code>extends</code> dit « le Chat est un Mammifère ».</li><li><strong>Les constructeurs ne s'héritent pas</strong> : la fille doit transmettre à la mère ce dont elle a besoin, en appelant son constructeur avec <code>super(...)</code>.</li><li><strong>Les attributs privés de la mère</strong> existent bien dans l'objet de la fille, mais elle n'y accède que par les méthodes de la mère. L'héritage et l'encapsulation fonctionnent ensemble.</li><li><strong>La fille peut ajouter</strong> ses propres attributs : le Chien a un nom, qui n'existe pas dans Animal.</li></ul>
+<p class="chapo"><strong>La fille peut ajouter</strong> ses propres attributs : le Chien a un nom, qui n'existe pas dans Animal.</p>
 <h3>Le polymorphisme</h3>
 <p>Un même nom de méthode peut produire des <strong>comportements différents</strong>. Deux formes :</p>
 <ul><li><strong>La redéfinition</strong> : la fille réécrit une méthode héritée, avec la même signature. L'Oiseau se déplace en volant, la Poule redéfinit le déplacement : elle marche. Java choisit à l'exécution, selon l'objet réel.</li><li><strong>La surcharge</strong> : plusieurs méthodes du même nom, avec des paramètres différents. Manger, manger un aliment, manger une quantité d'un aliment. Java choisit selon les paramètres donnés.</li></ul>
 <p>L'héritage donne un comportement par défaut, le polymorphisme permet de l'adapter. Il en existe d'autres formes : celles-ci sont les deux que vous utiliserez tous les jours.</p>
+<h2>Reprenons là où vous vous êtes arrêté·es</h2>
+<p><em>Les interfaces</em></p>
 <h3>L'interface</h3>
 <p>Une interface est <strong>un contrat</strong> : une liste de méthodes qu'une classe s'engage à écrire, sans dire comment.</p>
 <p>Le Saumon, la Baleine, le Chien et le Canard savent tous nager, sans être de la même famille. Une interface « Nageur » le dit, quelle que soit leur classe mère.</p>
@@ -213,6 +214,9 @@ tbody tr:nth-child(odd) td { background: var(--cellule); }
 <h3>Le reflexion.md, pourquoi ?</h3>
 <ul><li><strong>Quand</strong> : à la fin de chaque exercice.</li><li><strong>Où</strong> : un fichier <code>reflexion.md</code>, une section par exercice.</li><li><strong>Quoi</strong> : les questions de la fiche, en quelques lignes, sans rédaction.</li></ul>
 <p>C'est le livrable de la journée, à rendre en fin de journée.</p>
+<h3>Exercice 1 : l'équipe de héros</h3>
+<p>Une interface, des héros qui attaquent et soignent chacun à leur façon, une équipe qui les fait tous agir.</p>
+<p>On passe au code : fiche 1. Question 0 ensemble, puis vous continuez en autonomie.</p>
 </main>
 
 </body>

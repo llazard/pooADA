@@ -5,7 +5,8 @@ Spé Dev Ada, J5 : les quatre piliers de la POO, l'héritage et les interfaces, 
 ## Organisation des branches
 
 La branche `master` contient le cours et la démo. Chaque exercice a sa branche, qui part de
-`master` et ajoute la fiche et le code fourni.
+`master` et ajoute la fiche, le code fourni et la suite du cours : ce qu'il faut retenir
+de l'exercice. Le cours de `master` s'arrête au lancement de l'exercice 1.
 
 | Branche | Contenu |
 |---|---|
