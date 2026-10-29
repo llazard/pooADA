@@ -2,6 +2,9 @@
 
 Spé Dev Ada, J5 : les quatre piliers de la POO, l'héritage et les interfaces, en Java.
 
+Le cours, à lire en ligne :
+[Cours_POO_En_Pratique.html](https://htmlpreview.github.io/?https://github.com/llazard/pooADA/blob/master/ressources/Cours_POO_En_Pratique.html)
+
 ## Organisation des branches
 
 La branche `master` contient le cours et la démo. Chaque exercice a sa branche, qui part de
@@ -15,12 +18,6 @@ de l'exercice. Le cours de `master` s'arrête au lancement de l'exercice 1.
 | `exercice-2-playlist` | la playlist : un attribut qui est un objet, une liste d'objets |
 | `exercice-3-salaries` | les salariés : une classe mère abstraite, la redéfinition |
 | `exercice-4-panier` | le panier : la surcharge de méthodes et de constructeurs |
-
-Pour commencer un exercice :
-
-```
-git checkout exercice-1-heros
-```
 
 ## Structure
 
