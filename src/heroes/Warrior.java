@@ -12,4 +12,6 @@ public class Warrior implements Hero {
     @Override public String getName() { return name; }
     // Le guerrier inflige sa force en dégâts.
     @Override public int attack() { return strength; }
+    // Le guerrier ne soigne pas.
+    @Override public int heal() { return 0; }
 }
