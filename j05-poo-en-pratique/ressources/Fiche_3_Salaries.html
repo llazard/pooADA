@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercice 3 : les salariés</title>
+<style>
+/* Documents HTML a la charte : config/charte/documents.md. Les tailles reprennent celles
+   des anciens documents Word, en points. */
+:root {
+  --violet-fonce: #4f2d7f; --violet: #7c4dbc; --violet-clair: #ede7f6; --violet-tres-clair: #f6f2fb;
+  --bleu-fonce: #0d47a1; --bleu: #1976d2; --bleu-clair: #e3f1fd;
+  --vert-fonce: #1b6b3a; --vert: #388e3c; --vert-clair: #e8f5e9;
+  --orange-fonce: #e65100; --orange: #f57c00; --orange-clair: #fff3e0;
+  --texte: #222222; --attenue: #6a6a6a; --cellule: #f7f7f7;
+  --code: #3a2a55; --code-fond: #f4f1f9; --code-filet: #d9cceb;
+  --police: Calibri, Carlito, "Segoe UI", Arial, sans-serif;
+  --mono: Consolas, "Cascadia Mono", "Courier New", monospace;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--cellule); }
+body { margin: 0; padding: 24px 16px; font: 10.5pt/1.35 var(--police); color: var(--texte); background: var(--cellule); }
+
+.feuille {
+  max-width: 210mm; margin: 0 auto; padding: 19mm; background: #fff;
+  overflow-wrap: break-word;
+}
+.une-page .feuille { min-height: 297mm; padding: 14mm 19mm 12mm; }
+
+.entete {
+  display: flex; justify-content: space-between; gap: 1em; flex-wrap: wrap;
+  font-size: 9pt; color: var(--violet); border-bottom: 1.5px solid var(--violet);
+  padding-bottom: 4px; margin-bottom: 18px;
+}
+.entete span:first-child { color: var(--violet-fonce); }
+
+h1 { font-size: 20pt; line-height: 1.15; color: var(--violet-fonce); margin: 0 0 6px; }
+.sous-titre { font-size: 12pt; font-style: italic; color: var(--violet-fonce); margin: 0 0 6px; }
+.contexte { font-size: 9pt; color: var(--attenue); margin: 0 0 10px; }
+h2 {
+  font-size: 13pt; color: var(--violet); margin: 20px 0 8px; padding-bottom: 3px;
+  border-bottom: 1.5px solid var(--violet);
+}
+h3 { font-size: 11pt; color: var(--violet-fonce); background: var(--violet-clair); margin: 16px 0 8px; padding: 3px 8px; }
+h4 { font-size: 11pt; color: var(--violet-fonce); margin: 14px 0 6px; }
+
+p { margin: 0 0 7px; }
+.chapo > strong:first-child { color: var(--violet); }
+.une-page strong { color: var(--violet-fonce); }
+a { color: var(--bleu-fonce); }
+
+ul, ol { margin: 0 0 8px; padding-left: 22px; }
+li { margin: 0 0 3px; }
+ul > li::marker { color: var(--violet); }
+ol > li::marker { color: var(--violet); font-weight: 700; }
+li.case { list-style: none; margin-left: -16px; }
+
+code { font-family: var(--mono); font-size: 0.9em; color: var(--code); }
+pre {
+  font: 9pt/1.4 var(--mono); color: var(--code); background: var(--code-fond);
+  border-left: 3px solid var(--code-filet); padding: 8px 10px; margin: 0 0 9px;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+pre code { font-size: inherit; }
+
+table { width: 100%; border-collapse: collapse; margin: 0 0 10px; font-size: 10pt; }
+th, td { border: 1px solid var(--violet); padding: 4px 7px; text-align: left; vertical-align: top; }
+th { background: var(--violet); color: #fff; }
+tbody tr:nth-child(odd) td { background: var(--cellule); }
+
+/* parole du commanditaire : violet, hors comptage des rangs */
+.citation {
+  margin: 8px 0 10px; padding: 6px 10px; background: var(--violet-clair);
+  border-left: 4px solid var(--violet); font-style: italic; color: var(--violet-fonce);
+}
+.citation p:last-child, .encart p:last-child, .encart ul:last-child { margin-bottom: 0; }
+
+/* encarts : couleur de rang dans le bloc */
+.encart { margin: 8px 0 10px; padding: 6px 10px; font-size: 10pt; border-left: 4px solid; }
+.encart-bleu { background: var(--bleu-clair); border-color: var(--bleu); }
+.encart-bleu .libelle { color: var(--bleu-fonce); }
+.encart-vert { background: var(--vert-clair); border-color: var(--vert); }
+.encart-vert .libelle { color: var(--vert-fonce); }
+.encart-orange { background: var(--orange-clair); border-color: var(--orange); }
+.encart-orange .libelle { color: var(--orange-fonce); }
+.encart-violet { background: var(--violet-clair); border-color: var(--violet); }
+.encart-violet .libelle { color: var(--violet-fonce); }
+
+/* carte de user story : violet, deux tons, un seul filet */
+.story { margin: 10px 0 12px; border-left: 4px solid var(--violet); font-size: 10pt; break-inside: avoid; }
+.story-phrase { background: var(--violet-clair); padding: 6px 10px; }
+.story-phrase strong:first-child { color: var(--violet-fonce); }
+.story-criteres { background: var(--cellule); padding: 6px 10px; }
+.story-libelle { font-style: italic; color: var(--violet-fonce); margin-bottom: 3px; }
+.story p:last-child, .story ul:last-child { margin-bottom: 0; }
+
+.alerte {
+  max-width: 210mm; margin: 0 auto 12px; padding: 8px 12px; background: var(--orange-clair);
+  border-left: 4px solid var(--orange); color: #b53d00; font-weight: 700;
+}
+
+/* memo d'une page : interlignes resserres */
+.une-page { line-height: 1.25; }
+.une-page h1 { margin-bottom: 4px; }
+.une-page h2 { margin: 10px 0 5px; }
+.une-page h3, .une-page h4 { margin: 9px 0 5px; }
+.une-page p { margin-bottom: 4px; }
+.une-page li { margin-bottom: 1px; }
+.une-page pre { line-height: 1.3; padding: 5px 9px; margin-bottom: 6px; }
+.une-page table { margin-bottom: 6px; }
+.une-page th, .une-page td { padding: 3px 6px; }
+
+@media (max-width: 600px) {
+  body { padding: 0; }
+  .feuille, .une-page .feuille { padding: 20px 16px; min-height: 0; }
+  table { display: block; overflow-x: auto; }
+}
+
+/* impression A4 : en tete et numero de page dans les marges */
+@page {
+  size: A4; margin: 19mm;
+  @top-left { content: "Exercice 3 : les salariés"; font: 9pt Calibri, Carlito, sans-serif; color: #4f2d7f; vertical-align: bottom; padding-bottom: 6px; border-bottom: 1.5px solid #7c4dbc; }
+  @top-right { content: "Formatrice Développeuse / Lucie LAZARD"; font: 9pt Calibri, Carlito, sans-serif; color: #7c4dbc; vertical-align: bottom; padding-bottom: 6px; border-bottom: 1.5px solid #7c4dbc; }
+  @bottom-left { content: counter(page); font: 8pt Calibri, Carlito, sans-serif; color: #4f2d7f; vertical-align: top; padding-top: 6px; border-top: 1px solid #7c4dbc; }
+}
+@page memo { margin: 14mm 19mm 12mm; }
+.une-page .feuille { page: memo; }
+
+@media print {
+  html, body { background: #fff; padding: 0; }
+  .feuille, .une-page .feuille { max-width: none; padding: 0; min-height: 0; }
+  .entete, .alerte { display: none; }
+  h2, h3, h4 { break-after: avoid; }
+  pre, table, .encart, .citation { break-inside: avoid; }
+  th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+</style>
+</head>
+<body class="multi-pages">
+<main class="feuille">
+<header class="entete"><span>Exercice 3 : les salariés</span><span>Formatrice Développeuse / Lucie LAZARD</span></header>
+<h1>Exercice 3 : les salariés</h1>
+<p class="chapo"><strong>Le contexte</strong> : le service RH calcule la paie. Un salaire de base pour tous, une prime pour le manager, la moitié pour le stagiaire : le commun s'écrit une fois.</p>
+<p class="chapo"><strong>Ce qui est travaillé</strong> : une classe mère abstraite, <code>extends</code> et <code>super(...)</code>, la redéfinition avec <code>@Override</code> et <code>super.</code>, et une boucle sur le type parent.</p>
+<h2>Question 0, avec la formatrice</h2>
+<p>Copiez les classes et le <code>Main</code>, et lancez le.</p>
+<pre><code>public abstract class Employee {
+    private final String name;
+    private final int baseSalary;
+    public Employee(String name, int baseSalary) {
+        this.name = name;
+        this.baseSalary = baseSalary;
+    }
+    public String getName() { return name; }
+    public int getBaseSalary() { return baseSalary; }
+    // Le salaire versé : par défaut, le salaire de base.
+    public int getSalary() { return baseSalary; }
+    public String getInformation() {
+        return name + " : " + getSalary() + " €";
+    }
+}</code></pre>
+<pre><code>public class Developer extends Employee {
+    public Developer(String name, int baseSalary) {
+        super(name, baseSalary);
+    }
+}</code></pre>
+<pre><code>Employee alice = new Developer("Alice", 2500);
+System.out.println(alice.getInformation());</code></pre>
+<h2>La consigne</h2>
+<ol><li>Créez <code>Manager</code>, qui hérite de <code>Employee</code>, avec une prime. Dans <code>Manager</code>, écrivez une méthode <code>getSalary()</code> annotée <code>@Override</code> : elle redéfinit celle de <code>Employee</code>, et renvoie le salaire de base plus la prime.</li><li>Créez <code>Intern</code>, un stagiaire, et redéfinissez aussi <code>getSalary()</code> : elle renvoie la moitié du salaire de base.</li><li>Dans le <code>Main</code>, une <code>List&lt;Employee&gt;</code> : Alice, développeuse à 2500 € ; Bob, manager à 3000 € avec 500 € de prime ; Chloé, stagiaire à 1600 €. Une seule boucle affiche chaque salarié, puis la masse salariale : 6800 €.</li></ol>
+<aside class="encart encart-vert">
+<p><strong class="libelle">Astuce</strong> : dans une classe fille, <code>super.getSalary()</code> appelle la version de la méthode écrite dans la mère. Le manager reprend le salaire de base calculé par <code>Employee</code>, sans le recalculer, et n'y ajoute que sa prime.</p>
+</aside>
+<aside class="encart encart-bleu">
+<p><strong class="libelle">reflexion.md</strong> :</p>
+<ul><li><code>Employee</code> est abstraite. Essayez <code>new Employee("Bob", 3000)</code> : que dit le compilateur ? Pourquoi peut-on créer un <code>Developer</code>, qui ne redéfinit pourtant rien ?</li><li>Le constructeur de <code>Manager</code> commence par <code>super(name, baseSalary)</code>. Retirez cette ligne : que se passe-t-il ? Pourquoi ?</li><li>Dans le <code>getSalary()</code> de <code>Manager</code>, remplacez <code>super.getSalary()</code> par <code>getSalary()</code>, et lancez. Que se passe-t-il ? Pourquoi faut-il <code>super.</code> ?</li><li>Votre <code>List&lt;Employee&gt;</code> contient un <code>Developer</code>, un <code>Manager</code> et un <code>Intern</code> : trois classes différentes. Pourquoi Java accepte-t-il de les mettre dans la même liste ?</li><li><code>getInformation()</code> n'est écrite que dans <code>Employee</code>, qui ne connaît pas la prime. Pourquoi affiche-t-elle pourtant 3500 € pour Bob ?</li><li>Dans l'exercice 1, chaque héros écrivait son propre <code>getName()</code>, ligne pour ligne la même. Ici, <code>Developer</code>, <code>Manager</code> et <code>Intern</code> n'écrivent ni <code>getName()</code> ni <code>getInformation()</code>, et pourtant ils les ont. Pourquoi ? Qu'est-ce que l'héritage permet, que l'interface ne permettait pas ?</li></ul>
+</aside>
+<h2>Étape 2 : à quoi sert <code>@Override</code> ?</h2>
+<p><code>@Override</code> est facultatif : le code compile aussi sans. Voyons ce qu'il apporte. Dans <code>Manager</code>, faites une faute de frappe : renommez <code>getSalary()</code> en <code>getSallary()</code>, et lancez. Lisez le message.</p>
+<p>Retirez maintenant <code>@Override</code> de cette méthode, et relancez : combien touche Bob, et quelle est la masse salariale ? Remettez ensuite le bon nom et l'annotation.</p>
+<aside class="encart encart-bleu">
+<p><strong class="libelle">reflexion.md</strong> :</p>
+<ul><li>Avec la faute de frappe, que s'est-il passé avec <code>@Override</code>, puis sans ? À quoi sert <code>@Override</code> ?</li></ul>
+</aside>
+<h2>Étape 3 : le type déclaré</h2>
+<p>Ajoutez dans <code>Manager</code> une méthode <code>getBonus()</code>, qui renvoie la prime. Dans le <code>Main</code>, écrivez <code>Employee e = new Manager("Bob", 3000, 500);</code>, puis essayez <code>System.out.println(e.getSalary());</code> et <code>System.out.println(e.getBonus());</code>.</p>
+<aside class="encart encart-bleu">
+<p><strong class="libelle">reflexion.md</strong> :</p>
+<ul><li><code>e</code> contient un manager, qui a bien une prime. Pourquoi <code>e.getSalary()</code> renvoie-t-il 3500, alors que <code>e.getBonus()</code> ne compile pas ?</li></ul>
+</aside>
+<h2>Partie optionnelle</h2>
+<p>Un freelance est payé à la journée : 400 € par jour, pendant 5 jours. Créez <code>Freelance</code>, qui hérite de <code>Employee</code> avec un salaire de base à 0, et ajoutez-le à la liste : la boucle ne change pas. Mais un freelance est-il vraiment un <code>Employee</code> ? À explorer : « composition over inheritance ».</p>
+</main>
+
+</body>
+</html>
