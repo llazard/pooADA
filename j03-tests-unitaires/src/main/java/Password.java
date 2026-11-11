@@ -13,16 +13,30 @@ public class Password {
 
         boolean hasLetter = false;
         boolean hasDigit = false;
+        boolean hasSpecial = false;
+        boolean hasSpace = false;
         for (char c : password.toCharArray()) {
             if (Character.isLetter(c)) {
                 hasLetter = true;
-            }
-            if (Character.isDigit(c)) {
+            } else if (Character.isDigit(c)) {
                 hasDigit = true;
+            } else if (c == ' ') {
+                hasSpace = true;
+            } else {
+                hasSpecial = true;
             }
         }
         if (!hasLetter) {
             errors.add("Au moins une lettre");
+        }
+        if (!hasDigit) {
+            errors.add("Au moins un chiffre");
+        }
+        if (!hasSpecial) {
+            errors.add("Au moins un caractère spécial");
+        }
+        if (hasSpace) {
+            errors.add("Aucun espace");
         }
 
         return errors;
