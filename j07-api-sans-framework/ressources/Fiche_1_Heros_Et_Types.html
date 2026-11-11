@@ -207,12 +207,12 @@ public class HeroRepository {
 }</code></pre>
 <h2 id="la-consigne">La consigne</h2>
 <ol><li><strong>Le contrôleur</strong> : créez <code>HeroController</code>, sur le modèle de votre <code>HealthController</code>. Il a comme attribut <code>HeroRepository</code>, et il répond <code>Json.send(exchange, 200, repository.findAll())</code>.</li><li><strong>Main</strong> : ajoutez votre nouvelle route <code>/heroes</code>, et testez. <code>GET /heroes</code> renvoie les six héros : <code>[{"name":"Conan","role":"warrior","level":12},{"name":"Merlin",...}]</code>.</li></ol>
-<h2 id="partie-optionnelle-la-description-de-chaque-type">Partie optionnelle : la description de chaque type</h2>
-<p>On veut pouvoir afficher un descriptif pour chaque type de héros.</p>
-<ol><li><strong>Le modèle</strong> : dans <code>rpg.model</code>, créez une classe <code>Role</code>, avec pour attributs le nom du rôle et sa description.</li><li><strong>Le repository</strong> : créez un <code>RoleRepository</code>, qui donne une description pour chaque rôle : <code>warrior</code>, <code>mage</code>, <code>archer</code> et <code>priest</code>.</li><li><strong>Le contrôleur et Main</strong> : en reprenant les consignes précédentes, ajoutez la route <code>/roles</code>.</li></ol>
 <aside class="encart encart-vert">
 <p><strong class="libelle">Astuce</strong> : si les champs s'affichent dans l'ordre alphabétique, regardez votre <code>pom.xml</code>. Dans <code>&lt;properties&gt;</code>, sous la ligne de la version Java, ajoutez <code>&lt;maven.compiler.parameters&gt;true&lt;/maven.compiler.parameters&gt;</code>, puis rechargez Maven. L'ordre sera désormais celui des attributs dans votre classe.</p>
 </aside>
+<h2 id="partie-optionnelle-la-description-de-chaque-type">Partie optionnelle : la description de chaque type</h2>
+<p>On veut pouvoir afficher un descriptif pour chaque type de héros.</p>
+<ol><li><strong>Le modèle</strong> : dans <code>rpg.model</code>, créez une classe <code>Role</code>, avec pour attributs le nom du rôle et sa description.</li><li><strong>Le repository</strong> : créez un <code>RoleRepository</code>, qui donne une description pour chaque rôle : <code>warrior</code>, <code>mage</code>, <code>archer</code> et <code>priest</code>.</li><li><strong>Le contrôleur et Main</strong> : en reprenant les consignes précédentes, ajoutez la route <code>/roles</code>.</li></ol>
 </main>
 
 </body>
