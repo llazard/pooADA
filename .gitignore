@@ -30,3 +30,6 @@ bin/
 .DS_Store
 ### Maven ###
 target/
+
+### IntelliJ, réglages locaux des projets de journée ###
+j0*/.idea/
