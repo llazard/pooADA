@@ -207,16 +207,6 @@ public class HeroRepository {
     public List&lt;Hero&gt; findAll() {
         return heroes;
     }
-
-    // Renvoie null si aucun héros ne porte cet id.
-    public Hero findById(int id) {
-        for (Hero hero : heroes) {
-            if (hero.getId() == id) {
-                return hero;
-            }
-        }
-        return null;
-    }
 }</code></pre>
 <h2 id="la-consigne">La consigne</h2>
 <ol><li>Créez <code>HeroController</code>, sur le modèle de votre <code>HealthController</code>. Il reçoit un <code>HeroRepository</code> dans son constructeur, et le garde en attribut. Il répond <code>Json.send(exchange, 200, repository.findAll())</code> : Jackson écrit la liste.</li><li>Dans <code>Main</code>, confiez <code>/heroes</code> à un <code>HeroController</code>. <code>GET /heroes</code> renvoie les six héros : <code>[{"id":1,"name":"Conan","role":"warrior","level":12},{"id":2,...}]</code>.</li></ol>
