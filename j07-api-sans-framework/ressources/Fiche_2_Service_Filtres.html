@@ -190,7 +190,7 @@ HeroService heroService = new HeroService(heroRepository);
 server.createContext("/heroes", new HeroController(heroService));</code></pre>
 <p>Relancez : <code>GET /heroes</code> répond exactement comme avant.</p>
 <h2 id="la-consigne">La consigne</h2>
-<ol><li><strong>Le service</strong> : dans <code>HeroService</code>, écrivez <code>findByName(String text)</code>, les héros dont le nom contient le texte, sans tenir compte des majuscules.</li><li><strong>Le contrôleur</strong> : en prenant exemple sur ce qu'on a fait sur la route de santé juste avant, modifiez votre route <code>/heroes</code> pour que <code>/heroes?name=merl</code> donne Merlin. Vous pouvez reprendre tel quel le <code>readName</code> du cours. Si vous ne l'avez pas, voici la classe <code>UtilsController</code>, à mettre dans le paquet <code>rpg.controller</code> :</li></ol>
+<ol><li><strong>Le service</strong> : dans <code>HeroService</code>, écrivez <code>findByName(String text)</code>. Il récupère tous les héros du repository, et filtre pour ne garder que ceux dont le nom contient le texte, sans tenir compte des majuscules.</li><li><strong>Le contrôleur</strong> : en prenant exemple sur ce qu'on a fait sur la route de santé juste avant, modifiez votre route <code>/heroes</code> pour que <code>/heroes?name=merl</code> donne Merlin. Vous pouvez reprendre tel quel le <code>readName</code> du cours. Si vous ne l'avez pas, voici la classe <code>UtilsController</code>, à mettre dans le paquet <code>rpg.controller</code> :</li></ol>
 <pre><code>package rpg.controller;
 
 // Ce qui sert à plusieurs contrôleurs.
