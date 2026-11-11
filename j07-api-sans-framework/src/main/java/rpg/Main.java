@@ -13,8 +13,6 @@ public class Main {
 
         // La route : ce chemin est confié à ce contrôleur.
         server.createContext("/health", new HealthController());
-        // Évolution prévue pour l'exercice 2, avec le filtre :
-        // server.createContext("/health", new HealthController(new HealthService()));
 
         server.start();
         System.out.println("Serveur démarré sur http://localhost:8080");
