@@ -163,6 +163,7 @@ tbody tr:nth-child(odd) td { background: var(--cellule); }
 <p class="chapo"><strong>Ce qui est travaillé</strong> : passer d'un programme qui se termine à un serveur qui écoute, ajouter une bibliothèque au projet, écrire un premier contrôleur, le brancher sur une route, et reconnaître un serveur éteint.</p>
 <h2 id="question-0-avec-la-formatrice">Question 0, avec la formatrice</h2>
 <p>Dans IntelliJ, créez un projet Maven <code>rpg-api</code>, et lancez le <code>Main</code> généré. Il affiche, puis s'arrête : un programme qui se termine.</p>
+<p class="chapo"><strong>Jackson</strong> est une bibliothèque qui permet la conversion en JSON. Toute nouvelle bibliothèque doit être ajoutée dans le <code>pom.xml</code> pour pouvoir être utilisée dans le code.</p>
 <p>Dans le <code>pom.xml</code>, ajoutez Jackson, et la ligne <code>parameters</code> qui lui donne les noms des paramètres de vos constructeurs. Puis rechargez Maven.</p>
 <pre><code>&lt;properties&gt;
     &lt;maven.compiler.release&gt;21&lt;/maven.compiler.release&gt;
@@ -176,7 +177,7 @@ tbody tr:nth-child(odd) td { background: var(--cellule); }
         &lt;version&gt;3.1.5&lt;/version&gt;
     &lt;/dependency&gt;
 &lt;/dependencies&gt;</code></pre>
-<p>Copiez enfin <code>Json</code> dans un paquet <code>rpg.controller</code>. Elle est fournie : toutes vos réponses passeront par elle.</p>
+<p>Copiez enfin <code>Json</code> dans un paquet <code>rpg.controller</code>. Elle est fournie : cette classe sert de convertisseur JSON, et toutes vos réponses passeront par elle. Vous pouvez la copier coller sans vraiment chercher à comprendre comment elle marche : c'est une aide pour faciliter l'écriture d'une API sans framework, et vous n'en aurez plus besoin après.</p>
 <pre><code>package rpg.controller;
 
 import com.sun.net.httpserver.HttpExchange;
