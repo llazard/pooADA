@@ -3,21 +3,21 @@
 Spé Dev Ada, J5 : les quatre piliers de la POO, l'héritage et les interfaces, en Java.
 
 Le cours, à lire en ligne :
-[Cours_POO_En_Pratique.html](https://htmlpreview.github.io/?https://github.com/llazard/pooADA/blob/master/ressources/Cours_POO_En_Pratique.html)
+[Cours_POO_En_Pratique.html](https://htmlpreview.github.io/?https://github.com/llazard/pooADA/blob/main/j05-poo-en-pratique/ressources/Cours_POO_En_Pratique.html)
 
 ## Organisation des branches
 
-La branche `master` contient le cours et la démo. Chaque exercice a sa branche, qui part de
-`master` et ajoute la fiche, le code fourni et la suite du cours : ce qu'il faut retenir
-de l'exercice. Le cours de `master` s'arrête au lancement de l'exercice 1.
+La branche `main` contient, dans ce dossier, le cours et la démo. Chaque exercice a sa branche, qui part de
+`main` et ajoute la fiche, le code fourni et la suite du cours : ce qu'il faut retenir
+de l'exercice. Le cours de `main` s'arrête au lancement de l'exercice 1.
 
 | Branche | Contenu |
 |---|---|
-| `master` | le cours, et la démo des animaux |
-| `exercice-1-heros` | l'équipe de héros : une interface, plusieurs classes qui l'implémentent |
-| `exercice-2-playlist` | la playlist : un attribut qui est un objet, une liste d'objets |
-| `exercice-3-salaries` | les salariés : une classe mère abstraite, la redéfinition |
-| `exercice-4-panier` | le panier : la surcharge de méthodes et de constructeurs |
+| `main` | le cours, et la démo des animaux |
+| `j05-exercice-1-heros` | l'équipe de héros : une interface, plusieurs classes qui l'implémentent |
+| `j05-exercice-2-playlist` | la playlist : un attribut qui est un objet, une liste d'objets |
+| `j05-exercice-3-salaries` | les salariés : une classe mère abstraite, la redéfinition |
+| `j05-exercice-4-panier` | le panier : la surcharge de méthodes et de constructeurs |
 
 ## Structure
 
