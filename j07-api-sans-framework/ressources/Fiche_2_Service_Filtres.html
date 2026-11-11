@@ -159,6 +159,7 @@ tbody tr:nth-child(odd) td { background: var(--cellule); }
 <main class="feuille">
 <header class="entete"><span>Exercice 2 : le service et les filtres</span><span>Formatrice Développeuse / Lucie LAZARD</span></header>
 <h1>Exercice 2 : le service et les filtres</h1>
+<p class="chapo"><strong>Pour vous aider à démarrer</strong> : voici la correction de l'exercice précédent, certaines classes et méthodes vous serviront. <a href="https://github.com/llazard/pooADA/tree/j07-exercice-1-heros-types/j07-api-sans-framework">https://github.com/llazard/pooADA/tree/j07-exercice-1-heros-types/j07-api-sans-framework</a></p>
 <p class="chapo"><strong>Le contexte</strong> : l'écran du jeu veut maintenant trier les héros : seulement les mages, ou celui dont on tape le nom. Chercher parmi les héros, c'est du métier, et le contrôleur ne s'occupe que de HTTP. Une couche arrive entre les deux : le service.</p>
 <p class="chapo"><strong>Ce qui est travaillé</strong> : ajouter une couche sans rien changer pour qui appelle l'API, lire un filtre dans l'adresse, et placer la règle métier dans le service.</p>
 <p class="chapo"><strong>Le but</strong> : taper la requête dans le navigateur, <code>http://localhost:8080/heroes?name=merl</code>, puis <code>?role=mage</code>. Le contrôleur s'écrit comme celui de la route de santé du cours, <code>/health?name=Lucie</code>.</p>
