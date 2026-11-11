@@ -26,8 +26,8 @@ Avant de relancer `Main`, arrêtez le serveur précédent : sinon
 ## Le filtre dans l'adresse
 
 Évolution prévue pour l'exercice 2 : dans `src/`, la version de la route de santé avec un
-filtre est en commentaire. Pour l'essayer, décommentez le bloc de `HealthController` et
-l'import de `HealthService`, supprimez le `handle` du dessus, et dans `Main`, prenez la ligne
+filtre est en commentaire. Pour l'essayer, décommentez le bloc de `HealthController`,
+l'import de `HealthService` et la méthode de `UtilsController`, supprimez le `handle` du dessus, et dans `Main`, prenez la ligne
 commentée qui donne un `HealthService` au contrôleur. Puis, dans le navigateur :
 
 ```
@@ -38,7 +38,8 @@ http://localhost:8080/health?name=Lucie
 | Fichier | Ce qu'il fait |
 |---|---|
 | `rpg/service/HealthService.java` | le métier : `status` rend `ok Lucie` |
-| `rpg/controller/HealthController.java` | en commentaire : cherche le filtre dans la query avec sa méthode privée `readName`, appelle le service, choisit le code (sans filtre 200, filtre inconnu 400) |
+| `rpg/controller/HealthController.java` | en commentaire : lit la query avec `UtilsController.readName`, appelle le service, choisit le code (sans filtre 200, filtre inconnu 400) |
+| `rpg/controller/UtilsController.java` | en commentaire : `readName`, qui cherche le filtre `name` dans la query |
 
 Le contrôleur de l'exercice 2 reprend `readName` telle quelle : `/heroes?name=merl`.
 

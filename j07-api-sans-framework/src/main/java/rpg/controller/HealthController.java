@@ -16,8 +16,9 @@ public class HealthController implements HttpHandler {
     }
 
     // Évolution prévue pour l'exercice 2 : un filtre dans l'adresse, /health?name=Lucie.
-    // Pour l'essayer : décommentez ce bloc et l'import de HealthService, supprimez le
-    // handle du dessus, et dans Main, donnez un HealthService au contrôleur.
+    // Pour l'essayer : décommentez ce bloc, l'import de HealthService et la méthode de
+    // UtilsController, supprimez le handle du dessus, et dans Main, donnez un
+    // HealthService au contrôleur.
     //
     // private final HealthService service;
     //
@@ -34,21 +35,11 @@ public class HealthController implements HttpHandler {
     //         Json.send(exchange, 200, Map.of("status", "ok"));
     //         return;
     //     }
-    //     String name = readName(query);
+    //     String name = UtilsController.readName(query);
     //     if (name == null) {
     //         Json.send(exchange, 400, Map.of("error", "Filtre inconnu : " + query));
     //         return;
     //     }
     //     Json.send(exchange, 200, Map.of("status", service.status(name)));
-    // }
-    //
-    // // Cherche dans la query le filtre name : "name=Lucie" donne "Lucie".
-    // // Un autre filtre donne null.
-    // private String readName(String query) {
-    //     String[] filter = query.split("="); // ["name", "Lucie"]
-    //     if (filter[0].equals("name")) {
-    //         return filter[1];
-    //     }
-    //     return null;
     // }
 }

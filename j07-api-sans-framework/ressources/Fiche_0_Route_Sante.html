@@ -160,11 +160,10 @@ tbody tr:nth-child(odd) td { background: var(--cellule); }
 <header class="entete"><span>Exercice 0 : la route de santé</span><span>Formatrice Développeuse / Lucie LAZARD</span></header>
 <h1>Exercice 0 : la route de santé</h1>
 <p class="chapo"><strong>Le contexte</strong> : vous refaites seul·es ce que nous venons de faire ensemble. La route de santé est la première qu'on appelle quand quelque chose ne marche pas : si elle répond, le serveur tourne, et le problème est ailleurs.</p>
-<p class="chapo"><strong>Ce qui est travaillé</strong> : passer d'un programme qui se termine à un serveur qui écoute, ajouter une bibliothèque au projet, écrire un premier contrôleur, le brancher sur une route, et reconnaître un serveur éteint.</p>
+<p class="chapo"><strong>Ce qui est travaillé</strong> : passer d'un programme qui se termine à un serveur qui écoute, ajouter une bibliothèque au projet, écrire un premier contrôleur, et le brancher sur une route.</p>
 <h2 id="question-0-avec-la-formatrice">Question 0, avec la formatrice</h2>
 <p>Dans IntelliJ, créez un projet Maven <code>rpg-api</code>, et lancez le <code>Main</code> généré. Il affiche, puis s'arrête : un programme qui se termine.</p>
 <p class="chapo"><strong>Jackson</strong> est une bibliothèque qui permet la conversion en JSON. Toute nouvelle bibliothèque doit être ajoutée dans le <code>pom.xml</code> pour pouvoir être utilisée dans le code.</p>
-<p>Dans le <code>pom.xml</code>, ajoutez Jackson, et la ligne <code>parameters</code> qui lui donne les noms des paramètres de vos constructeurs. Puis rechargez Maven.</p>
 <pre><code>&lt;properties&gt;
     &lt;maven.compiler.release&gt;21&lt;/maven.compiler.release&gt;
     &lt;maven.compiler.parameters&gt;true&lt;/maven.compiler.parameters&gt;
@@ -204,7 +203,7 @@ public class Json {
 <p><strong class="libelle">Astuce</strong> : avant de relancer <code>Main</code>, arrêtez le serveur précédent avec le carré rouge d'IntelliJ. Sinon : <code>BindException: Address already in use</code>, le port 8080 est déjà pris.</p>
 </aside>
 <h2 id="la-consigne">La consigne</h2>
-<ol><li>Dans <code>Main</code>, créez un serveur sur le port 8080, et démarrez le. Lancez : <code>main</code> se termine, mais le carré rouge reste allumé. Le serveur attend.</li><li>Dans Thunder Client, appelez <code>GET <a href="http://localhost:8080/health">http://localhost:8080/health</a></code> : 404, « No context found for request ». Le serveur répond, mais aucune route ne porte ce chemin.</li><li>Dans le paquet <code>rpg.controller</code>, créez <code>HealthController</code>, qui implémente <code>HttpHandler</code> et répond <code>Json.send(exchange, 200, Map.of("status", "ok"))</code>.</li><li>Dans <code>Main</code>, confiez le chemin <code>/health</code> à votre <code>HealthController</code>. <code>GET /health</code> répond <code>{"status":"ok"}</code>, code 200.</li><li>Arrêtez le serveur et appelez à nouveau <code>/health</code>. Qu'affiche Thunder Client ? En quoi est ce différent du 404 de la consigne 2 ?</li></ol>
+<ol><li>Dans <code>Main</code>, créez un serveur sur le port 8080, et démarrez le. Lancez : <code>main</code> se termine, mais le carré rouge reste allumé. Le serveur attend.</li><li>Dans Thunder Client, appelez <code>GET <a href="http://localhost:8080/health">http://localhost:8080/health</a></code> : 404, « No context found for request ». Le serveur répond, mais aucune route ne porte ce chemin. On va donc ajouter notre healthcheck.</li><li><strong>Le contrôleur</strong> : dans le paquet <code>rpg.controller</code>, créez <code>HealthController</code>, qui implémente <code>HttpHandler</code> et répond ok, comme on vient de le voir en cours.</li><li><strong>Main</strong> : ajoutez votre chemin <code>/health</code> à votre serveur.</li><li>Testez à nouveau <code>http://localhost:8080/health</code> : <code>{"status":"ok"}</code>, code 200.</li></ol>
 </main>
 <script>
 addEventListener("load", () => {
