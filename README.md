@@ -17,7 +17,7 @@ branche, préfixée par sa journée : elle ajoute la fiche et le code fourni, pu
 
 | Branche | Contenu |
 |---|---|
-| `main` | les cours et les démos : la calculatrice du J3, les animaux du J5, la route de santé du J7 et son filtre |
+| `main` | les cours et les démos : la calculatrice du J3, les animaux du J5, la route de santé du J7, et son filtre en commentaire |
 | `j03-exercice-1-fizzbuzz` | J3 : FizzBuzz, puis la règle Qix, testés avec JUnit |
 | `j03-exercice-2-mot-de-passe` | J3 : le mot de passe, testé avec JUnit |
 | `j03-exercice-3-chiffres-romains` | J3 : les chiffres romains, testés avec JUnit |

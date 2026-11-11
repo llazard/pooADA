@@ -24,8 +24,10 @@ Avant de relancer `Main`, arrêtez le serveur précédent : sinon
 
 ## Le filtre dans l'adresse
 
-`demo-filtre/` : la même route de santé, avec un filtre. Ouvrez son `pom.xml` comme projet
-Maven, puis lancez `rpg.Main`, et tapez dans le navigateur :
+Évolution prévue pour l'exercice 2 : dans `demo/`, la version de la route de santé avec un
+filtre est en commentaire. Pour l'essayer, décommentez le bloc de `HealthController` et
+l'import de `HealthService`, supprimez le `handle` du dessus, et dans `Main`, prenez la ligne
+commentée qui donne un `HealthService` au contrôleur. Puis, dans le navigateur :
 
 ```
 http://localhost:8080/health?name=Lucie
@@ -35,7 +37,7 @@ http://localhost:8080/health?name=Lucie
 | Fichier | Ce qu'il fait |
 |---|---|
 | `rpg/service/HealthService.java` | le métier : `readName` lit le filtre, `status` rend `ok Lucie` |
-| `rpg/controller/HealthController.java` | lit la requête, appelle le service, choisit le code : sans filtre 200, filtre inconnu 400 |
+| `rpg/controller/HealthController.java` | en commentaire : lit la requête, appelle le service, choisit le code (sans filtre 200, filtre inconnu 400) |
 
 Le contrôleur de l'exercice 2 a la même forme : `/heroes?role=mage`.
 
