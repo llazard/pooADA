@@ -1,7 +1,8 @@
 public class RomanNumerals {
 
-    private static final int[] VALUES = {1000, 900, 500, 400, 100, 50, 90, 40, 10, 9, 5, 1};
-    private static final String[] SYMBOLS = {"M", "CM", "D", "DC", "C", "L", "XC", "XL", "X", "IX", "V", "I"};
+    // Corrigé : IV ajouté, XC remis avant L, CD au lieu de DC.
+    private static final int[] VALUES = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+    private static final String[] SYMBOLS = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
 
     public static String toRoman(int number) {
         StringBuilder result = new StringBuilder();
