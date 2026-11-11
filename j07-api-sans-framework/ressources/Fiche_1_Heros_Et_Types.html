@@ -159,10 +159,11 @@ tbody tr:nth-child(odd) td { background: var(--cellule); }
 <main class="feuille">
 <header class="entete"><span>Exercice 1 : les héros et leurs types</span><span>Formatrice Développeuse / Lucie LAZARD</span></header>
 <h1>Exercice 1 : les héros et leurs types</h1>
-<p class="chapo"><strong>Le contexte</strong> : un jeu de rôle garde ses héros en mémoire, et les types de héros avec leur description. L'écran du jeu veut afficher les deux listes. Il ne lance pas votre programme, il lui envoie des requêtes, et il attend du JSON en réponse.</p>
+<p class="chapo"><strong>Le contexte</strong> : un jeu de rôle garde ses héros en mémoire. L'écran du jeu veut afficher leur liste. Il ne lance pas votre programme, il lui envoie des requêtes, et il attend du JSON en réponse.</p>
 <p class="chapo"><strong>Ce qui est travaillé</strong> : écrire un contrôleur qui va chercher des données, les renvoyer en JSON avec Jackson, et refaire le même geste sur une seconde route.</p>
 <h2 id="question-0-avec-la-formatrice">Question 0, avec la formatrice</h2>
-<p>Dans votre projet, copiez les deux modèles dans le paquet <code>rpg.model</code>, et les deux repositories dans le paquet <code>rpg.repository</code>. Relancez : <code>/health</code> répond toujours.</p>
+<p>Dans votre projet, copiez le modèle dans le paquet <code>rpg.model</code>, et le repository dans le paquet <code>rpg.repository</code>. Relancez : <code>/health</code> répond toujours.</p>
+<ul><li><strong>Le modèle</strong>, ce sont les classes que l'on va utiliser : comme en POO les jours précédents, les moules de nos objets.</li><li><strong>Le repository</strong> fait office de base de données : on y stocke nos objets, et ce sont ses méthodes qui nous les retournent.</li></ul>
 <pre><code>package rpg.model;
 
 public class Hero {
@@ -182,21 +183,6 @@ public class Hero {
     public String getName() { return name; }
     public String getRole() { return role; }
     public int getLevel() { return level; }
-}</code></pre>
-<pre><code>package rpg.model;
-
-// Un type de héros, et ce qu'il sait faire.
-public class Role {
-    private final String name;
-    private final String description;
-
-    public Role(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public String getName() { return name; }
-    public String getDescription() { return description; }
 }</code></pre>
 <pre><code>package rpg.repository;
 
@@ -232,40 +218,11 @@ public class HeroRepository {
         return null;
     }
 }</code></pre>
-<pre><code>package rpg.repository;
-
-import rpg.model.Role;
-
-import java.util.ArrayList;
-import java.util.List;
-
-// Les types de héros, gardés en mémoire.
-public class RoleRepository {
-    private final List&lt;Role&gt; roles = new ArrayList&lt;&gt;();
-
-    public RoleRepository() {
-        roles.add(new Role("warrior", "Se bat au corps à corps et encaisse les coups"));
-        roles.add(new Role("mage", "Lance des sorts puissants, mais reste fragile"));
-        roles.add(new Role("archer", "Attaque à distance, flèche après flèche"));
-        roles.add(new Role("priest", "Soigne et protège l'équipe"));
-    }
-
-    public List&lt;Role&gt; findAll() {
-        return roles;
-    }
-
-    // Renvoie null si aucun type ne porte ce nom.
-    public Role findByName(String name) {
-        for (Role role : roles) {
-            if (role.getName().equals(name)) {
-                return role;
-            }
-        }
-        return null;
-    }
-}</code></pre>
 <h2 id="la-consigne">La consigne</h2>
-<ol><li>Créez <code>HeroController</code>, sur le modèle de votre <code>HealthController</code>. Il reçoit un <code>HeroRepository</code> dans son constructeur, et le garde en attribut. Il répond <code>Json.send(exchange, 200, repository.findAll())</code> : Jackson écrit la liste.</li><li>Dans <code>Main</code>, confiez <code>/heroes</code> à un <code>HeroController</code>. <code>GET /heroes</code> renvoie les six héros, sur une seule ligne : <code>[{"id":1,"name":"Conan","role":"warrior","level":12},{"id":2,...}]</code>.</li><li>Même chose pour les types : <code>RoleController</code>, sur le chemin <code>/roles</code>. <code>GET /roles</code> renvoie les quatre types : <code>[{"name":"warrior","description":"Se bat au corps à corps et encaisse les coups"},...]</code>.</li></ol>
+<ol><li>Créez <code>HeroController</code>, sur le modèle de votre <code>HealthController</code>. Il reçoit un <code>HeroRepository</code> dans son constructeur, et le garde en attribut. Il répond <code>Json.send(exchange, 200, repository.findAll())</code> : Jackson écrit la liste.</li><li>Dans <code>Main</code>, confiez <code>/heroes</code> à un <code>HeroController</code>. <code>GET /heroes</code> renvoie les six héros : <code>[{"id":1,"name":"Conan","role":"warrior","level":12},{"id":2,...}]</code>.</li></ol>
+<h2 id="partie-optionnelle-la-description-de-chaque-type">Partie optionnelle : la description de chaque type</h2>
+<p>On veut pouvoir afficher un descriptif pour chaque type de héros.</p>
+<ol><li>Dans <code>rpg.model</code>, créez une classe <code>Role</code>, avec pour attributs le nom du rôle et sa description.</li><li>Créez un <code>RoleRepository</code>, qui donne une description pour chaque rôle : <code>warrior</code>, <code>mage</code>, <code>archer</code> et <code>priest</code>.</li><li>Ajoutez un <code>RoleController</code> sur le chemin <code>/roles</code>, qui renvoie ces rôles. Par exemple : <code>[{"name":"warrior","description":"Se bat au corps à corps et encaisse les coups"},...]</code>.</li></ol>
 </main>
 
 </body>

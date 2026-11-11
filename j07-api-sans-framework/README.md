@@ -29,7 +29,7 @@ Avant de relancer `Main`, arrêtez le serveur précédent : sinon
 | Fiche | Exercice |
 |---|---|
 | `Fiche_0_Route_Sante.html` | la route de santé, refaite seul·es dans un projet neuf. Le corrigé est `demo/` |
-| `Fiche_1_Heros_Et_Types.html` | `GET /heroes` et `GET /roles` |
+| `Fiche_1_Heros_Et_Types.html` | `GET /heroes`, et en option `GET /roles` |
 | `Fiche_2_Service_Filtres.html` | le service, les filtres `?role=` et `?name=`, et ses tests |
 | `Fiche_3_Recruter_Heros.html` | optionnel : `POST /heroes`, recruter un héros |
 
@@ -40,6 +40,6 @@ Une branche par exercice, publiée après sa correction. Le projet corrigé est 
 
 | Branche | Contenu |
 |---|---|
-| `j07-exercice-1-heros-types` | le code fourni (modèles et repositories), puis la correction de l'exercice 1 |
+| `j07-exercice-1-heros-types` | le code fourni (`Hero` et `HeroRepository`), puis la correction de l'exercice 1, partie optionnelle comprise (`Role`, `/roles`) |
 | `j07-exercice-2-service-filtres` | part de l'exercice 1 : le service, les filtres, les tests, et la partie optionnelle `GET /heroes/2` |
 | `j07-exercice-3-recruter-heros` | part de l'exercice 2 : `POST /heroes` |
