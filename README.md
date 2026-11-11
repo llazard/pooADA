@@ -27,7 +27,6 @@ branche, préfixée par sa journée : elle ajoute la fiche et le code fourni, pu
 | `j05-exercice-4-panier` | J5 : le panier, la surcharge de méthodes et de constructeurs |
 | `j07-exercice-1-heros-types` | J7 : `GET /heroes`, et en option `GET /roles` |
 | `j07-exercice-2-service-filtres` | J7 : le service, les filtres `?name=` et `?role=`. Part de l'exercice 1 |
-| `j07-exercice-3-recruter-heros` | J7 : `POST /heroes`, recruter un héros. Part de l'exercice 2 |
 
 Pour récupérer une correction :
 

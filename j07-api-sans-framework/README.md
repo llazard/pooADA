@@ -52,7 +52,6 @@ Le contrôleur de l'exercice 2 reprend `readName` telle quelle : `/heroes?name=m
 | `Fiche_0_Route_Sante.html` | la route de santé, refaite seul·es dans un projet neuf. Le corrigé est ce dossier, sur `main` |
 | `Fiche_1_Heros_Et_Types.html` | `GET /heroes`, et en option `GET /roles` |
 | `Fiche_2_Service_Filtres.html` | le service, les filtres `?role=` et `?name=`, et ses tests |
-| `Fiche_3_Recruter_Heros.html` | optionnel : `POST /heroes`, recruter un héros |
 
 ## Les corrections
 
@@ -62,5 +61,4 @@ Une branche par exercice, publiée après sa correction : elle remplace le `src/
 | Branche | Contenu |
 |---|---|
 | `j07-exercice-1-heros-types` | le code fourni (`Hero` et `HeroRepository`), puis la correction de l'exercice 1, partie optionnelle comprise (`Role`, `/roles`) |
-| `j07-exercice-2-service-filtres` | part de l'exercice 1 : le service, les filtres, et la partie optionnelle `GET /heroeswithdetail` |
-| `j07-exercice-3-recruter-heros` | part de l'exercice 2 : `POST /heroes` |
+| `j07-exercice-2-service-filtres` | part de l'exercice 1 : le service, les filtres, et la partie optionnelle `GET /roles?name=` et `GET /heroeswithdetail` |
