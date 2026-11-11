@@ -4,6 +4,7 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+        <option value="$PROJECT_DIR$/j03-tests-unitaires/pom.xml" />
         <option value="$PROJECT_DIR$/j07-api-sans-framework/demo/pom.xml" />
         <option value="$PROJECT_DIR$/j07-api-sans-framework/demo-filtre/pom.xml" />
       </list>

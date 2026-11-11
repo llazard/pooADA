@@ -5,6 +5,7 @@ avec son propre README.
 
 | Dossier | Journée |
 |---|---|
+| [`j03-tests-unitaires/`](j03-tests-unitaires/) | J3 : les tests unitaires avec JUnit 5, la démo de la calculatrice |
 | [`j05-poo-en-pratique/`](j05-poo-en-pratique/) | J5 : la POO en pratique, les quatre piliers, l'héritage et les interfaces |
 | [`j07-api-sans-framework/`](j07-api-sans-framework/) | J7 : une API à la main, un serveur Java sans framework, et sa route de santé |
 
@@ -16,7 +17,7 @@ branche, préfixée par sa journée : elle ajoute la fiche et le code fourni, pu
 
 | Branche | Contenu |
 |---|---|
-| `main` | les cours et les démos : les animaux du J5, la route de santé du J7 et son filtre |
+| `main` | les cours et les démos : la calculatrice du J3, les animaux du J5, la route de santé du J7 et son filtre |
 | `j03-exercice-1-fizzbuzz` | J3 : FizzBuzz, puis la règle Qix, testés avec JUnit |
 | `j03-exercice-2-mot-de-passe` | J3 : le mot de passe, testé avec JUnit |
 | `j03-exercice-3-chiffres-romains` | J3 : les chiffres romains, testés avec JUnit |
