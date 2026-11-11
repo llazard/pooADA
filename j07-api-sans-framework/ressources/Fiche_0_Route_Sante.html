@@ -164,12 +164,7 @@ tbody tr:nth-child(odd) td { background: var(--cellule); }
 <h2 id="question-0-avec-la-formatrice">Question 0, avec la formatrice</h2>
 <p>Dans IntelliJ, créez un projet Maven <code>rpg-api</code>, et lancez le <code>Main</code> généré. Il affiche, puis s'arrête : un programme qui se termine.</p>
 <p class="chapo"><strong>Jackson</strong> est une bibliothèque qui permet la conversion en JSON. Toute nouvelle bibliothèque doit être ajoutée dans le <code>pom.xml</code> pour pouvoir être utilisée dans le code.</p>
-<pre><code>&lt;properties&gt;
-    &lt;maven.compiler.release&gt;21&lt;/maven.compiler.release&gt;
-    &lt;maven.compiler.parameters&gt;true&lt;/maven.compiler.parameters&gt;
-&lt;/properties&gt;
-
-&lt;dependencies&gt;
+<pre><code>&lt;dependencies&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;tools.jackson.core&lt;/groupId&gt;
         &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
@@ -203,7 +198,7 @@ public class Json {
 <p><strong class="libelle">Astuce</strong> : avant de relancer <code>Main</code>, arrêtez le serveur précédent avec le carré rouge d'IntelliJ. Sinon : <code>BindException: Address already in use</code>, le port 8080 est déjà pris.</p>
 </aside>
 <h2 id="la-consigne">La consigne</h2>
-<ol><li>Dans <code>Main</code>, créez un serveur sur le port 8080, et démarrez le. Lancez : <code>main</code> se termine, mais le carré rouge reste allumé. Le serveur attend.</li><li>Dans Thunder Client, appelez <code>GET <a href="http://localhost:8080/health">http://localhost:8080/health</a></code> : 404, « No context found for request ». Le serveur répond, mais aucune route ne porte ce chemin. On va donc ajouter notre healthcheck.</li><li><strong>Le contrôleur</strong> : dans le paquet <code>rpg.controller</code>, créez <code>HealthController</code>, qui implémente <code>HttpHandler</code> et répond ok, comme on vient de le voir en cours.</li><li><strong>Main</strong> : ajoutez votre chemin <code>/health</code> à votre serveur.</li><li>Testez à nouveau <code>http://localhost:8080/health</code> : <code>{"status":"ok"}</code>, code 200.</li></ol>
+<ol><li>Dans <code>Main</code>, créez un serveur sur le port 8080, et démarrez le. Lancez : <code>main</code> se termine, mais le carré rouge reste allumé. Le serveur attend.</li><li>Dans Thunder Client, ou directement dans votre navigateur, appelez <code>GET <a href="http://localhost:8080/health">http://localhost:8080/health</a></code> : 404, « No context found for request ». Le serveur répond, mais aucune route ne porte ce chemin. On va donc ajouter notre healthcheck.</li><li><strong>Le contrôleur</strong> : dans le paquet <code>rpg.controller</code>, créez <code>HealthController</code>, qui implémente <code>HttpHandler</code> et répond ok, comme on vient de le voir en cours.</li><li><strong>Main</strong> : ajoutez votre chemin <code>/health</code> à votre serveur.</li><li>Testez à nouveau <code>http://localhost:8080/health</code> : <code>{"status":"ok"}</code>, code 200.</li></ol>
 </main>
 <script>
 addEventListener("load", () => {
