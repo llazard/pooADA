@@ -1,15 +1,20 @@
 public class FizzBuzz {
 
+    // Après la règle Qix : les mots se concatènent, dans l'ordre Fizz, Buzz, Qix.
     public static String fizzBuzz(int n) {
-        if (n % 15 == 0) {
-            return "FizzBuzz";
-        }
+        String result = "";
         if (n % 3 == 0) {
-            return "Fizz";
+            result += "Fizz";
         }
         if (n % 5 == 0) {
-            return "Buzz";
+            result += "Buzz";
         }
-        return String.valueOf(n);
+        if (n % 2 == 0) {
+            result += "Qix";
+        }
+        if (result.isEmpty()) {
+            return String.valueOf(n);
+        }
+        return result;
     }
 }
