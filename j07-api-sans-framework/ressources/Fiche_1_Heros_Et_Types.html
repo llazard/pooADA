@@ -210,6 +210,9 @@ public class HeroRepository {
 <h2 id="partie-optionnelle-la-description-de-chaque-type">Partie optionnelle : la description de chaque type</h2>
 <p>On veut pouvoir afficher un descriptif pour chaque type de héros.</p>
 <ol><li>Dans <code>rpg.model</code>, créez une classe <code>Role</code>, avec pour attributs le nom du rôle et sa description.</li><li>Créez un <code>RoleRepository</code>, qui donne une description pour chaque rôle : <code>warrior</code>, <code>mage</code>, <code>archer</code> et <code>priest</code>.</li><li>Ajoutez un <code>RoleController</code> sur le chemin <code>/roles</code>, qui renvoie ces rôles. Par exemple : <code>[{"name":"warrior","description":"Se bat au corps à corps et encaisse les coups"},...]</code>.</li></ol>
+<aside class="encart encart-vert">
+<p><strong class="libelle">Astuce</strong> : si les champs s'affichent dans l'ordre alphabétique, regardez votre <code>pom.xml</code>. Dans <code>&lt;properties&gt;</code>, sous la ligne de la version Java, ajoutez <code>&lt;maven.compiler.parameters&gt;true&lt;/maven.compiler.parameters&gt;</code>, puis rechargez Maven. L'ordre sera désormais celui des attributs dans votre classe.</p>
+</aside>
 </main>
 
 </body>
