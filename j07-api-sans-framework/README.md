@@ -48,7 +48,7 @@ Le contrôleur de l'exercice 2 reprend `readName` telle quelle : `/heroes?name=m
 
 | Fiche | Exercice |
 |---|---|
-| `Fiche_0_Route_Sante.html` | la route de santé, refaite seul·es dans un projet neuf. Le corrigé est `demo/` |
+| `Fiche_0_Route_Sante.html` | la route de santé, refaite seul·es dans un projet neuf. Le corrigé est ce dossier, sur `main` |
 | `Fiche_1_Heros_Et_Types.html` | `GET /heroes`, et en option `GET /roles` |
 | `Fiche_2_Service_Filtres.html` | le service, les filtres `?role=` et `?name=`, et ses tests |
 | `Fiche_3_Recruter_Heros.html` | optionnel : `POST /heroes`, recruter un héros |
