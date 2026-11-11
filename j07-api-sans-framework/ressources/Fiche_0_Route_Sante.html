@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercice 0 : la route de santé</title>
+<style>
+/* Documents HTML a la charte : config/charte/documents.md. Les tailles reprennent celles
+   des anciens documents Word, en points. */
+:root {
+  --violet-fonce: #4f2d7f; --violet: #7c4dbc; --violet-clair: #ede7f6; --violet-tres-clair: #f6f2fb;
+  --bleu-fonce: #0d47a1; --bleu: #1976d2; --bleu-clair: #e3f1fd;
+  --vert-fonce: #1b6b3a; --vert: #388e3c; --vert-clair: #e8f5e9;
+  --orange-fonce: #e65100; --orange: #f57c00; --orange-clair: #fff3e0;
+  --texte: #222222; --attenue: #6a6a6a; --cellule: #f7f7f7;
+  --code: #3a2a55; --code-fond: #f4f1f9; --code-filet: #d9cceb;
+  --police: Calibri, Carlito, "Segoe UI", Arial, sans-serif;
+  --mono: Consolas, "Cascadia Mono", "Courier New", monospace;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--cellule); }
+body { margin: 0; padding: 24px 16px; font: 10.5pt/1.35 var(--police); color: var(--texte); background: var(--cellule); }
+
+.feuille {
+  max-width: 210mm; margin: 0 auto; padding: 19mm; background: #fff;
+  overflow-wrap: break-word;
+}
+.une-page .feuille { min-height: 297mm; padding: 14mm 19mm 12mm; }
+
+.entete {
+  display: flex; justify-content: space-between; gap: 1em; flex-wrap: wrap;
+  font-size: 9pt; color: var(--violet); border-bottom: 1.5px solid var(--violet);
+  padding-bottom: 4px; margin-bottom: 18px;
+}
+.entete span:first-child { color: var(--violet-fonce); }
+
+h1 { font-size: 20pt; line-height: 1.15; color: var(--violet-fonce); margin: 0 0 6px; }
+.sous-titre { font-size: 12pt; font-style: italic; color: var(--violet-fonce); margin: 0 0 6px; }
+.contexte { font-size: 9pt; color: var(--attenue); margin: 0 0 10px; }
+h2 {
+  font-size: 13pt; color: var(--violet); margin: 20px 0 8px; padding-bottom: 3px;
+  border-bottom: 1.5px solid var(--violet);
+}
+h3 { font-size: 11pt; color: var(--violet-fonce); background: var(--violet-clair); margin: 16px 0 8px; padding: 3px 8px; }
+h4 { font-size: 11pt; color: var(--violet-fonce); margin: 14px 0 6px; }
+
+p { margin: 0 0 7px; }
+.chapo > strong:first-child { color: var(--violet); }
+.une-page strong { color: var(--violet-fonce); }
+a { color: var(--bleu-fonce); }
+
+ul, ol { margin: 0 0 8px; padding-left: 22px; }
+li { margin: 0 0 3px; }
+ul > li::marker { color: var(--violet); }
+ol > li::marker { color: var(--violet); font-weight: 700; }
+li.case { list-style: none; margin-left: -16px; }
+
+code { font-family: var(--mono); font-size: 0.9em; color: var(--code); }
+pre {
+  font: 9pt/1.4 var(--mono); color: var(--code); background: var(--code-fond);
+  border-left: 3px solid var(--code-filet); padding: 8px 10px; margin: 0 0 9px;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+pre code { font-size: inherit; }
+
+figure.schema { margin: 4px 0 12px; text-align: center; }
+figure.schema svg { max-width: 100%; height: auto; }
+figure.schema figcaption { font-size: 9pt; color: var(--attenue); margin-top: 3px; }
+
+table { width: 100%; border-collapse: collapse; margin: 0 0 10px; font-size: 10pt; }
+th, td { border: 1px solid var(--violet); padding: 4px 7px; text-align: left; vertical-align: top; }
+th { background: var(--violet); color: #fff; }
+tbody tr:nth-child(odd) td { background: var(--cellule); }
+
+/* parole du commanditaire : violet, hors comptage des rangs */
+.citation {
+  margin: 8px 0 10px; padding: 6px 10px; background: var(--violet-clair);
+  border-left: 4px solid var(--violet); font-style: italic; color: var(--violet-fonce);
+}
+.citation p:last-child, .encart p:last-child, .encart ul:last-child { margin-bottom: 0; }
+
+/* encarts : couleur de rang dans le bloc */
+.encart { margin: 8px 0 10px; padding: 6px 10px; font-size: 10pt; border-left: 4px solid; }
+.encart-bleu { background: var(--bleu-clair); border-color: var(--bleu); }
+.encart-bleu .libelle { color: var(--bleu-fonce); }
+.encart-vert { background: var(--vert-clair); border-color: var(--vert); }
+.encart-vert .libelle { color: var(--vert-fonce); }
+.encart-orange { background: var(--orange-clair); border-color: var(--orange); }
+.encart-orange .libelle { color: var(--orange-fonce); }
+.encart-violet { background: var(--violet-clair); border-color: var(--violet); }
+.encart-violet .libelle { color: var(--violet-fonce); }
+
+/* carte de user story : violet, deux tons, un seul filet */
+.story { margin: 10px 0 12px; border-left: 4px solid var(--violet); font-size: 10pt; break-inside: avoid; }
+.story-phrase { background: var(--violet-clair); padding: 6px 10px; }
+.story-phrase strong:first-child { color: var(--violet-fonce); }
+.story-criteres { background: var(--cellule); padding: 6px 10px; }
+.story-libelle { font-style: italic; color: var(--violet-fonce); margin-bottom: 3px; }
+.story p:last-child, .story ul:last-child { margin-bottom: 0; }
+
+.alerte {
+  max-width: 210mm; margin: 0 auto 12px; padding: 8px 12px; background: var(--orange-clair);
+  border-left: 4px solid var(--orange); color: #b53d00; font-weight: 700;
+}
+
+/* memo d'une page : interlignes resserres */
+/* déroulé avec notes à droite (notes: droite) : l'étape à gauche, une case vide à droite */
+.etape { display: grid; grid-template-columns: 1fr 42mm; gap: 4mm; align-items: start; break-inside: avoid; }
+.etape-corps > :first-child { margin-top: 9px; }
+.etape-notes { margin-top: 9px; border: 1px solid #d9cceb; border-radius: 4px; font-size: 8pt; color: #6a6a6a; }
+.etape-notes p { margin: 0; padding: 3px 6px; }
+.etape-notes .etape-heure { min-height: 9mm; border-bottom: 1px dotted #d9cceb; }
+.etape-notes p + p { min-height: 18mm; }
+
+.une-page { line-height: 1.25; }
+.une-page h1 { margin-bottom: 4px; }
+.une-page h2 { margin: 10px 0 5px; }
+.une-page h3, .une-page h4 { margin: 9px 0 5px; }
+.une-page p { margin-bottom: 4px; }
+.une-page li { margin-bottom: 1px; }
+.une-page pre { line-height: 1.3; padding: 5px 9px; margin-bottom: 6px; }
+.une-page table { margin-bottom: 6px; }
+.une-page th, .une-page td { padding: 3px 6px; }
+
+@media (max-width: 600px) {
+  body { padding: 0; }
+  .feuille, .une-page .feuille { padding: 20px 16px; min-height: 0; }
+  table { display: block; overflow-x: auto; }
+}
+
+/* impression A4 : en tete et numero de page dans les marges */
+@page {
+  size: A4; margin: 19mm;
+  @top-left { content: "Exercice 0 : la route de santé"; font: 9pt Calibri, Carlito, sans-serif; color: #4f2d7f; vertical-align: bottom; padding-bottom: 6px; border-bottom: 1.5px solid #7c4dbc; }
+  @top-right { content: "Formatrice Développeuse / Lucie LAZARD"; font: 9pt Calibri, Carlito, sans-serif; color: #7c4dbc; vertical-align: bottom; padding-bottom: 6px; border-bottom: 1.5px solid #7c4dbc; }
+  @bottom-left { content: counter(page); font: 8pt Calibri, Carlito, sans-serif; color: #4f2d7f; vertical-align: top; padding-top: 6px; border-top: 1px solid #7c4dbc; }
+}
+@page memo { margin: 14mm 19mm 12mm; }
+.une-page .feuille { page: memo; }
+
+@media print {
+  html, body { background: #fff; padding: 0; }
+  .feuille, .une-page .feuille { max-width: none; padding: 0; min-height: 0; }
+  .entete, .alerte { display: none; }
+  h2, h3, h4 { break-after: avoid; }
+  .saut-section .feuille > h2 ~ h2 { break-before: page; }
+  pre, table, .encart, .citation, figure.schema { break-inside: avoid; }
+  table.long { break-inside: auto; }
+  table.long tr { break-inside: avoid; }
+  thead { display: table-header-group; }
+  th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+</style>
+</head>
+<body class="une-page">
+<main class="feuille">
+<header class="entete"><span>Exercice 0 : la route de santé</span><span>Formatrice Développeuse / Lucie LAZARD</span></header>
+<h1>Exercice 0 : la route de santé</h1>
+<p class="chapo"><strong>Le contexte</strong> : vous refaites seul·es ce que nous venons de faire ensemble. La route de santé est la première qu'on appelle quand quelque chose ne marche pas : si elle répond, le serveur tourne, et le problème est ailleurs.</p>
+<p class="chapo"><strong>Ce qui est travaillé</strong> : passer d'un programme qui se termine à un serveur qui écoute, ajouter une bibliothèque au projet, écrire un premier contrôleur, le brancher sur une route, et reconnaître un serveur éteint.</p>
+<h2 id="question-0-avec-la-formatrice">Question 0, avec la formatrice</h2>
+<p>Dans IntelliJ, créez un projet Maven <code>rpg-api</code>, et lancez le <code>Main</code> généré. Il affiche, puis s'arrête : un programme qui se termine.</p>
+<p>Dans le <code>pom.xml</code>, ajoutez Jackson, et la ligne <code>parameters</code> qui lui donne les noms des paramètres de vos constructeurs. Puis rechargez Maven.</p>
+<pre><code>&lt;properties&gt;
+    &lt;maven.compiler.release&gt;21&lt;/maven.compiler.release&gt;
+    &lt;maven.compiler.parameters&gt;true&lt;/maven.compiler.parameters&gt;
+&lt;/properties&gt;
+
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;tools.jackson.core&lt;/groupId&gt;
+        &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+        &lt;version&gt;3.1.5&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+<p>Copiez enfin <code>Json</code> dans un paquet <code>rpg.controller</code>. Elle est fournie : toutes vos réponses passeront par elle.</p>
+<pre><code>package rpg.controller;
+
+import com.sun.net.httpserver.HttpExchange;
+import tools.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.io.OutputStream;
+
+// Fourni : toutes les réponses passent par ici. Jackson transforme l'objet en JSON, puis
+// send écrit l'en-tête Content-Type, le code, et le corps.
+public class Json {
+    private static final ObjectMapper mapper = new ObjectMapper();
+
+    public static void send(HttpExchange exchange, int status, Object body) throws IOException {
+        byte[] bytes = mapper.writeValueAsBytes(body);
+        exchange.getResponseHeaders().set("Content-Type", "application/json; charset=utf-8");
+        exchange.sendResponseHeaders(status, bytes.length);
+        try (OutputStream output = exchange.getResponseBody()) {
+            output.write(bytes);
+        }
+    }
+
+    // Exercice 3 : lit le JSON du corps de la requête, et en fait un objet Java.
+    public static &lt;T&gt; T read(HttpExchange exchange, Class&lt;T&gt; type) {
+        return mapper.readValue(exchange.getRequestBody(), type);
+    }
+}</code></pre>
+<aside class="encart encart-vert">
+<p><strong class="libelle">Astuce</strong> : avant de relancer <code>Main</code>, arrêtez le serveur précédent avec le carré rouge d'IntelliJ. Sinon : <code>BindException: Address already in use</code>, le port 8080 est déjà pris.</p>
+</aside>
+<h2 id="la-consigne">La consigne</h2>
+<ol><li>Dans <code>Main</code>, créez un serveur sur le port 8080, et démarrez le. Lancez : <code>main</code> se termine, mais le carré rouge reste allumé. Le serveur attend.</li><li>Dans Thunder Client, appelez <code>GET <a href="http://localhost:8080/health">http://localhost:8080/health</a></code> : 404, « No context found for request ». Le serveur répond, mais aucune route ne porte ce chemin.</li><li>Dans le paquet <code>rpg.controller</code>, créez <code>HealthController</code>, qui implémente <code>HttpHandler</code> et répond <code>Json.send(exchange, 200, Map.of("status", "ok"))</code>.</li><li>Dans <code>Main</code>, confiez le chemin <code>/health</code> à votre <code>HealthController</code>. <code>GET /health</code> répond <code>{"status":"ok"}</code>, code 200.</li><li>Arrêtez le serveur et appelez à nouveau <code>/health</code>. Qu'affiche Thunder Client ? En quoi est ce différent du 404 de la consigne 2 ?</li></ol>
+</main>
+<script>
+addEventListener("load", () => {
+  const feuille = document.querySelector(".feuille");
+  const mm = feuille.getBoundingClientRect().width / 210;
+  const blocs = [...feuille.children].filter((e) => !e.classList.contains("entete"));
+  const haut = blocs[0].getBoundingClientRect().top;
+  const bas = Math.max(...blocs.map((e) => e.getBoundingClientRect().bottom + parseFloat(getComputedStyle(e).marginBottom)));
+  const contenu = (bas - haut) / mm / 10;
+  const dispo = (297 - 14 - 12) / 10;
+  document.body.dataset.hauteur = contenu.toFixed(1);
+  document.body.dataset.dispo = dispo.toFixed(1);
+  if (contenu > dispo) {
+    const alerte = document.createElement("p");
+    alerte.className = "alerte";
+    alerte.textContent = "Ce mémo dépasse une page : " + contenu.toFixed(1) + " cm pour " + dispo.toFixed(1) + " cm utiles.";
+    document.body.prepend(alerte);
+  }
+});
+</script>
+</body>
+</html>

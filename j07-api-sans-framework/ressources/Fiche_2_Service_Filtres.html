@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercice 2 : le service et les filtres</title>
+<style>
+/* Documents HTML a la charte : config/charte/documents.md. Les tailles reprennent celles
+   des anciens documents Word, en points. */
+:root {
+  --violet-fonce: #4f2d7f; --violet: #7c4dbc; --violet-clair: #ede7f6; --violet-tres-clair: #f6f2fb;
+  --bleu-fonce: #0d47a1; --bleu: #1976d2; --bleu-clair: #e3f1fd;
+  --vert-fonce: #1b6b3a; --vert: #388e3c; --vert-clair: #e8f5e9;
+  --orange-fonce: #e65100; --orange: #f57c00; --orange-clair: #fff3e0;
+  --texte: #222222; --attenue: #6a6a6a; --cellule: #f7f7f7;
+  --code: #3a2a55; --code-fond: #f4f1f9; --code-filet: #d9cceb;
+  --police: Calibri, Carlito, "Segoe UI", Arial, sans-serif;
+  --mono: Consolas, "Cascadia Mono", "Courier New", monospace;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--cellule); }
+body { margin: 0; padding: 24px 16px; font: 10.5pt/1.35 var(--police); color: var(--texte); background: var(--cellule); }
+
+.feuille {
+  max-width: 210mm; margin: 0 auto; padding: 19mm; background: #fff;
+  overflow-wrap: break-word;
+}
+.une-page .feuille { min-height: 297mm; padding: 14mm 19mm 12mm; }
+
+.entete {
+  display: flex; justify-content: space-between; gap: 1em; flex-wrap: wrap;
+  font-size: 9pt; color: var(--violet); border-bottom: 1.5px solid var(--violet);
+  padding-bottom: 4px; margin-bottom: 18px;
+}
+.entete span:first-child { color: var(--violet-fonce); }
+
+h1 { font-size: 20pt; line-height: 1.15; color: var(--violet-fonce); margin: 0 0 6px; }
+.sous-titre { font-size: 12pt; font-style: italic; color: var(--violet-fonce); margin: 0 0 6px; }
+.contexte { font-size: 9pt; color: var(--attenue); margin: 0 0 10px; }
+h2 {
+  font-size: 13pt; color: var(--violet); margin: 20px 0 8px; padding-bottom: 3px;
+  border-bottom: 1.5px solid var(--violet);
+}
+h3 { font-size: 11pt; color: var(--violet-fonce); background: var(--violet-clair); margin: 16px 0 8px; padding: 3px 8px; }
+h4 { font-size: 11pt; color: var(--violet-fonce); margin: 14px 0 6px; }
+
+p { margin: 0 0 7px; }
+.chapo > strong:first-child { color: var(--violet); }
+.une-page strong { color: var(--violet-fonce); }
+a { color: var(--bleu-fonce); }
+
+ul, ol { margin: 0 0 8px; padding-left: 22px; }
+li { margin: 0 0 3px; }
+ul > li::marker { color: var(--violet); }
+ol > li::marker { color: var(--violet); font-weight: 700; }
+li.case { list-style: none; margin-left: -16px; }
+
+code { font-family: var(--mono); font-size: 0.9em; color: var(--code); }
+pre {
+  font: 9pt/1.4 var(--mono); color: var(--code); background: var(--code-fond);
+  border-left: 3px solid var(--code-filet); padding: 8px 10px; margin: 0 0 9px;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+pre code { font-size: inherit; }
+
+figure.schema { margin: 4px 0 12px; text-align: center; }
+figure.schema svg { max-width: 100%; height: auto; }
+figure.schema figcaption { font-size: 9pt; color: var(--attenue); margin-top: 3px; }
+
+table { width: 100%; border-collapse: collapse; margin: 0 0 10px; font-size: 10pt; }
+th, td { border: 1px solid var(--violet); padding: 4px 7px; text-align: left; vertical-align: top; }
+th { background: var(--violet); color: #fff; }
+tbody tr:nth-child(odd) td { background: var(--cellule); }
+
+/* parole du commanditaire : violet, hors comptage des rangs */
+.citation {
+  margin: 8px 0 10px; padding: 6px 10px; background: var(--violet-clair);
+  border-left: 4px solid var(--violet); font-style: italic; color: var(--violet-fonce);
+}
+.citation p:last-child, .encart p:last-child, .encart ul:last-child { margin-bottom: 0; }
+
+/* encarts : couleur de rang dans le bloc */
+.encart { margin: 8px 0 10px; padding: 6px 10px; font-size: 10pt; border-left: 4px solid; }
+.encart-bleu { background: var(--bleu-clair); border-color: var(--bleu); }
+.encart-bleu .libelle { color: var(--bleu-fonce); }
+.encart-vert { background: var(--vert-clair); border-color: var(--vert); }
+.encart-vert .libelle { color: var(--vert-fonce); }
+.encart-orange { background: var(--orange-clair); border-color: var(--orange); }
+.encart-orange .libelle { color: var(--orange-fonce); }
+.encart-violet { background: var(--violet-clair); border-color: var(--violet); }
+.encart-violet .libelle { color: var(--violet-fonce); }
+
+/* carte de user story : violet, deux tons, un seul filet */
+.story { margin: 10px 0 12px; border-left: 4px solid var(--violet); font-size: 10pt; break-inside: avoid; }
+.story-phrase { background: var(--violet-clair); padding: 6px 10px; }
+.story-phrase strong:first-child { color: var(--violet-fonce); }
+.story-criteres { background: var(--cellule); padding: 6px 10px; }
+.story-libelle { font-style: italic; color: var(--violet-fonce); margin-bottom: 3px; }
+.story p:last-child, .story ul:last-child { margin-bottom: 0; }
+
+.alerte {
+  max-width: 210mm; margin: 0 auto 12px; padding: 8px 12px; background: var(--orange-clair);
+  border-left: 4px solid var(--orange); color: #b53d00; font-weight: 700;
+}
+
+/* memo d'une page : interlignes resserres */
+/* déroulé avec notes à droite (notes: droite) : l'étape à gauche, une case vide à droite */
+.etape { display: grid; grid-template-columns: 1fr 42mm; gap: 4mm; align-items: start; break-inside: avoid; }
+.etape-corps > :first-child { margin-top: 9px; }
+.etape-notes { margin-top: 9px; border: 1px solid #d9cceb; border-radius: 4px; font-size: 8pt; color: #6a6a6a; }
+.etape-notes p { margin: 0; padding: 3px 6px; }
+.etape-notes .etape-heure { min-height: 9mm; border-bottom: 1px dotted #d9cceb; }
+.etape-notes p + p { min-height: 18mm; }
+
+.une-page { line-height: 1.25; }
+.une-page h1 { margin-bottom: 4px; }
+.une-page h2 { margin: 10px 0 5px; }
+.une-page h3, .une-page h4 { margin: 9px 0 5px; }
+.une-page p { margin-bottom: 4px; }
+.une-page li { margin-bottom: 1px; }
+.une-page pre { line-height: 1.3; padding: 5px 9px; margin-bottom: 6px; }
+.une-page table { margin-bottom: 6px; }
+.une-page th, .une-page td { padding: 3px 6px; }
+
+@media (max-width: 600px) {
+  body { padding: 0; }
+  .feuille, .une-page .feuille { padding: 20px 16px; min-height: 0; }
+  table { display: block; overflow-x: auto; }
+}
+
+/* impression A4 : en tete et numero de page dans les marges */
+@page {
+  size: A4; margin: 19mm;
+  @top-left { content: "Exercice 2 : le service et les filtres"; font: 9pt Calibri, Carlito, sans-serif; color: #4f2d7f; vertical-align: bottom; padding-bottom: 6px; border-bottom: 1.5px solid #7c4dbc; }
+  @top-right { content: "Formatrice Développeuse / Lucie LAZARD"; font: 9pt Calibri, Carlito, sans-serif; color: #7c4dbc; vertical-align: bottom; padding-bottom: 6px; border-bottom: 1.5px solid #7c4dbc; }
+  @bottom-left { content: counter(page); font: 8pt Calibri, Carlito, sans-serif; color: #4f2d7f; vertical-align: top; padding-top: 6px; border-top: 1px solid #7c4dbc; }
+}
+@page memo { margin: 14mm 19mm 12mm; }
+.une-page .feuille { page: memo; }
+
+@media print {
+  html, body { background: #fff; padding: 0; }
+  .feuille, .une-page .feuille { max-width: none; padding: 0; min-height: 0; }
+  .entete, .alerte { display: none; }
+  h2, h3, h4 { break-after: avoid; }
+  .saut-section .feuille > h2 ~ h2 { break-before: page; }
+  pre, table, .encart, .citation, figure.schema { break-inside: avoid; }
+  table.long { break-inside: auto; }
+  table.long tr { break-inside: avoid; }
+  thead { display: table-header-group; }
+  th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+</style>
+</head>
+<body class="multi-pages">
+<main class="feuille">
+<header class="entete"><span>Exercice 2 : le service et les filtres</span><span>Formatrice Développeuse / Lucie LAZARD</span></header>
+<h1>Exercice 2 : le service et les filtres</h1>
+<p class="chapo"><strong>Le contexte</strong> : l'écran du jeu veut maintenant trier les héros : seulement les mages, ou celui dont on tape le nom. Chercher parmi les héros, c'est du métier, et le contrôleur ne s'occupe que de HTTP. Une couche arrive entre les deux : le service.</p>
+<p class="chapo"><strong>Ce qui est travaillé</strong> : ajouter une couche sans rien changer pour qui appelle l'API, lire un filtre dans l'adresse, placer la règle métier dans le service, et la tester sans lancer le serveur.</p>
+<h2 id="question-0-avec-la-formatrice">Question 0, avec la formatrice</h2>
+<p>Créez le service dans le paquet <code>rpg.service</code>. Pour l'instant, il ne fait que passer la main au repository.</p>
+<pre><code>package rpg.service;
+
+import rpg.model.Hero;
+import rpg.repository.HeroRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+
+// Le métier : ce qu'on cherche parmi les héros. Ni HTTP ni JSON ici.
+public class HeroService {
+    private final HeroRepository heroRepository;
+
+    public HeroService(HeroRepository heroRepository) {
+        this.heroRepository = heroRepository;
+    }
+
+    public List&lt;Hero&gt; findAll() {
+        return heroRepository.findAll();
+    }
+}</code></pre>
+<p>Dans <code>HeroController</code>, remplacez <code>HeroRepository</code> par <code>HeroService</code>. Dans <code>Main</code>, assemblez les couches :</p>
+<pre><code>HeroRepository heroRepository = new HeroRepository();
+HeroService heroService = new HeroService(heroRepository);
+server.createContext("/heroes", new HeroController(heroService));</code></pre>
+<p>Relancez : <code>GET /heroes</code> répond exactement comme avant.</p>
+<h2 id="la-consigne">La consigne</h2>
+<ol><li>Dans <code>HeroService</code>, écrivez <code>findByRole(String role)</code> : les héros de ce type, sans tenir compte des majuscules.</li><li>Dans le contrôleur, branchez <code>GET /heroes?role=mage</code>. <code>exchange.getRequestURI().getQuery()</code> renvoie <code>"role=mage"</code>, ou <code>null</code> quand il n'y a pas de filtre. Attendu : Merlin et Morgane. Puis <code>?role=necromancer</code> : <code>[]</code>, code 200.</li><li>Dans <code>HeroService</code>, écrivez <code>findByName(String text)</code> : les héros dont le nom contient le texte, sans tenir compte des majuscules. Branchez <code>GET /heroes?name=merl</code> : Merlin.</li><li>Un filtre inconnu, <code>?color=red</code>, répond 400 avec <code>{"error":"Filtre inconnu : color"}</code>, écrit par <code>Map.of("error", …)</code>.</li><li>Créez <code>HeroServiceTest</code>, dans <code>src/test/java</code>, paquet <code>rpg.service</code>, avec trois tests : les deux mages, le type inconnu qui renvoie une liste vide, et <code>"MERL"</code> qui trouve Merlin. Lancez les sans démarrer le serveur.</li></ol>
+<h2 id="partie-optionnelle-un-heros-et-son-type">Partie optionnelle : un héros et son type</h2>
+<p><code>GET /heroes/2</code> renvoie Merlin, avec la description de son type : <code>{"id":2,"name":"Merlin","role":"mage","level":18,"description":"Lance des sorts puissants, mais reste fragile"}</code>.</p>
+<ol><li>Le service reçoit aussi le <code>RoleRepository</code> dans son constructeur.</li><li>Créez <code>HeroDetail</code> dans <code>rpg.model</code> : les quatre champs du héros, et la description de son type. Un getter pour chacun : Jackson écrit un champ par getter.</li><li>Dans le service, <code>findDetail(int id)</code> réunit le héros et son type, ou renvoie <code>null</code>.</li><li>Dans le contrôleur, <code>path.split("/")</code> donne <code>["", "heroes", "2"]</code> : trois morceaux, c'est un id. <code>GET /heroes/42</code> répond 404 avec <code>{"error":"Héros 42 introuvable"}</code>.</li></ol>
+<p>Pour explorer : ce que dit un 404, et ce qu'il ne dit pas, sur MDN, <a href="https://developer.mozilla.org/fr/docs/Web/HTTP/Status/404">https://developer.mozilla.org/fr/docs/Web/HTTP/Status/404</a></p>
+</main>
+
+</body>
+</html>
