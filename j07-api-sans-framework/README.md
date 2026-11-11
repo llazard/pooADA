@@ -61,5 +61,5 @@ Une branche par exercice, publiée après sa correction : elle remplace le `src/
 | Branche | Contenu |
 |---|---|
 | `j07-exercice-1-heros-types` | le code fourni (`Hero` et `HeroRepository`), puis la correction de l'exercice 1, partie optionnelle comprise (`Role`, `/roles`) |
-| `j07-exercice-2-service-filtres` | part de l'exercice 1 : le service, les filtres, les tests, et la partie optionnelle `GET /heroeswithdetail` |
+| `j07-exercice-2-service-filtres` | part de l'exercice 1 : le service, les filtres, et la partie optionnelle `GET /heroeswithdetail` |
 | `j07-exercice-3-recruter-heros` | part de l'exercice 2 : `POST /heroes` |
