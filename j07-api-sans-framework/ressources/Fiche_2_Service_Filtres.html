@@ -190,7 +190,23 @@ HeroService heroService = new HeroService(heroRepository);
 server.createContext("/heroes", new HeroController(heroService));</code></pre>
 <p>Relancez : <code>GET /heroes</code> répond exactement comme avant.</p>
 <h2 id="la-consigne">La consigne</h2>
-<ol><li><strong>Le service</strong> : dans <code>HeroService</code>, écrivez <code>findByName(String text)</code>, les héros dont le nom contient le texte, sans tenir compte des majuscules.</li><li><strong>Le contrôleur</strong> : en prenant exemple sur ce qu'on a fait sur la route de santé juste avant, modifiez votre route <code>/heroes</code> pour que <code>/heroes?name=merl</code> donne Merlin. Vous pouvez reprendre tel quel le <code>readName</code> du cours : on le modifiera pour les questions suivantes.</li><li><strong>Le service</strong> : écrivez <code>findByRole(String role)</code>. findByRole filtre les héros, et ne retourne que ceux dont le rôle correspond au rôle reçu en paramètre, sans tenir compte des majuscules (<code>equalsIgnoreCase</code>).</li><li><strong>Le contrôleur</strong> : sur le modèle de <code>readName</code>, écrivez <code>readRole</code>, et modifiez votre route pour que <code>/heroes?role=mage</code> donne Merlin et Morgane. Puis <code>?role=necromancer</code> : <code>[]</code>, code 200. Aucun héros, ce n'est pas une erreur.</li><li><strong>Le contrôleur</strong> : un filtre inconnu. <code>?color=red</code> répond 400 avec <code>{"error":"Filtre inconnu : color=red"}</code>, écrit par <code>Map.of("error", …)</code>.</li></ol>
+<ol><li><strong>Le service</strong> : dans <code>HeroService</code>, écrivez <code>findByName(String text)</code>, les héros dont le nom contient le texte, sans tenir compte des majuscules.</li><li><strong>Le contrôleur</strong> : en prenant exemple sur ce qu'on a fait sur la route de santé juste avant, modifiez votre route <code>/heroes</code> pour que <code>/heroes?name=merl</code> donne Merlin. Vous pouvez reprendre tel quel le <code>readName</code> du cours. Si vous ne l'avez pas, voici la classe <code>UtilsController</code>, à mettre dans le paquet <code>rpg.controller</code> :</li></ol>
+<pre><code>package rpg.controller;
+
+// Ce qui sert à plusieurs contrôleurs.
+public class UtilsController {
+
+    // Cherche dans la query le filtre name : "name=Lucie" donne "Lucie".
+    // Un autre filtre donne null.
+    public static String readName(String query) {
+        String[] filter = query.split("="); // ["name", "Lucie"]
+        if (filter[0].equals("name")) {
+            return filter[1];
+        }
+        return null;
+    }
+}</code></pre>
+<ol start="3"><li><strong>Le service</strong> : écrivez <code>findByRole(String role)</code>. findByRole filtre les héros, et ne retourne que ceux dont le rôle correspond au rôle reçu en paramètre, sans tenir compte des majuscules (<code>equalsIgnoreCase</code>).</li><li><strong>Le contrôleur</strong> : sur le modèle de <code>readName</code>, écrivez <code>readRole</code>, et modifiez votre route pour que <code>/heroes?role=mage</code> donne Merlin et Morgane. Puis <code>?role=necromancer</code> : <code>[]</code>, code 200. Aucun héros, ce n'est pas une erreur.</li><li><strong>Le contrôleur</strong> : un filtre inconnu. <code>?color=red</code> répond 400 avec <code>{"error":"Filtre inconnu : color=red"}</code>, écrit par <code>Map.of("error", …)</code>.</li></ol>
 <h2 id="partie-optionnelle-un-heros-et-son-type">Partie optionnelle : un héros et son type</h2>
 <p>D'abord la description d'un type, avec un filtre, <code>GET /roles?name=mage</code>.</p>
 <ol><li><strong>Le repository</strong> : dans <code>RoleRepository</code>, ajoutez <code>findByName(String name)</code>, le type qui porte ce nom, ou <code>null</code>.</li><li><strong>Le contrôleur</strong> : déplacez <code>readName</code> dans une classe <code>UtilsController</code>, et complétez votre code pour que <code>/roles?name=mage</code> fonctionne. <code>GET /roles?name=mage</code> : <code>{"name":"mage","description":"Lance des sorts puissants, mais reste fragile"}</code>. Et <code>?name=necromancer</code> répond 404 avec <code>{"error":"Type necromancer introuvable"}</code>.</li></ol>
