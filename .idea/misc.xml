@@ -6,7 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/j03-tests-unitaires/pom.xml" />
         <option value="$PROJECT_DIR$/j05-poo-en-pratique/pom.xml" />
-        <option value="$PROJECT_DIR$/j07-api-sans-framework/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/j07-api-sans-framework/pom.xml" />
       </list>
     </option>
   </component>
