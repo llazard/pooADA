@@ -206,7 +206,7 @@ public class HeroRepository {
     }
 }</code></pre>
 <h2 id="la-consigne">La consigne</h2>
-<ol><li><strong>Le contrôleur</strong> : créez <code>HeroController</code>, sur le modèle de votre <code>HealthController</code>. Il a comme attribut <code>HeroRepository</code>, et il répond <code>Json.send(exchange, 200, repository.findAll())</code>.</li><li><strong>Main</strong> : ajoutez votre nouvelle route <code>/heroes</code>, et testez. <code>GET /heroes</code> renvoie les six héros : <code>[{"name":"Conan","role":"warrior","level":12},{"name":"Merlin",...}]</code>.</li></ol>
+<ol><li><strong>Le contrôleur</strong> : créez <code>HeroController</code>, sur le modèle de votre <code>HealthController</code>. Il a comme attribut <code>HeroRepository</code>, et il répond <code>Json.send(exchange, 200, repository.findAll())</code>.</li><li><strong>Main</strong> : ajoutez votre nouvelle route <code>/heroes</code>, et testez.</li></ol>
 <aside class="encart encart-vert">
 <p><strong class="libelle">Astuce</strong> : si les champs s'affichent dans l'ordre alphabétique, regardez votre <code>pom.xml</code>. Dans <code>&lt;properties&gt;</code>, sous la ligne de la version Java, ajoutez <code>&lt;maven.compiler.parameters&gt;true&lt;/maven.compiler.parameters&gt;</code>, puis rechargez Maven. L'ordre sera désormais celui des attributs dans votre classe.</p>
 </aside>
