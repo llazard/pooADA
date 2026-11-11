@@ -5,8 +5,8 @@ sans framework. Le `HttpServer` du JDK, et Jackson pour écrire le JSON.
 
 ## La démo : la route de santé
 
-`demo/` est un projet Maven, regroupé avec les corrections par le `pom.xml` de ce dossier :
-c'est lui qu'IntelliJ charge. Lancez `rpg.Main` de `demo`.
+Ce dossier est un projet Maven : `pom.xml` et `src/`. Ouvrez-le dans IntelliJ, puis lancez
+`rpg.Main`.
 
 ```
 GET http://localhost:8080/health
@@ -25,7 +25,7 @@ Avant de relancer `Main`, arrêtez le serveur précédent : sinon
 
 ## Le filtre dans l'adresse
 
-Évolution prévue pour l'exercice 2 : dans `demo/`, la version de la route de santé avec un
+Évolution prévue pour l'exercice 2 : dans `src/`, la version de la route de santé avec un
 filtre est en commentaire. Pour l'essayer, décommentez le bloc de `HealthController` et
 l'import de `HealthService`, supprimez le `handle` du dessus, et dans `Main`, prenez la ligne
 commentée qui donne un `HealthService` au contrôleur. Puis, dans le navigateur :
@@ -55,8 +55,8 @@ Le contrôleur de l'exercice 2 reprend `readName` telle quelle : `/heroes?name=m
 
 ## Les corrections
 
-Une branche par exercice, publiée après sa correction. Le projet corrigé est dans
-`j07-api-sans-framework/rpg-api/`.
+Une branche par exercice, publiée après sa correction : elle remplace le `src/` et le
+`pom.xml` de ce dossier par le code de l'exercice.
 
 | Branche | Contenu |
 |---|---|

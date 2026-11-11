@@ -4,13 +4,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Le J7 dans IntelliJ : ce pom ne fait que regrouper les projets du dossier. -->
     <groupId>fr.ada</groupId>
-    <artifactId>api-sans-framework</artifactId>
+    <artifactId>rpg-api</artifactId>
     <version>1.0</version>
-    <packaging>pom</packaging>
 
-    <modules>
-        <module>demo</module>
-    </modules>
+    <properties>
+        <maven.compiler.release>21</maven.compiler.release>
+        <!-- Jackson lit les noms des paramètres du constructeur : ordre des champs, et POST -->
+        <maven.compiler.parameters>true</maven.compiler.parameters>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>3.1.5</version>
+        </dependency>
+    </dependencies>
 </project>
