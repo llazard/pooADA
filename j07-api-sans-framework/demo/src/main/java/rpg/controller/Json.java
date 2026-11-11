@@ -19,9 +19,4 @@ public class Json {
             output.write(bytes);
         }
     }
-
-    // Exercice 3 : lit le JSON du corps de la requête, et en fait un objet Java.
-    public static <T> T read(HttpExchange exchange, Class<T> type) {
-        return mapper.readValue(exchange.getRequestBody(), type);
-    }
 }

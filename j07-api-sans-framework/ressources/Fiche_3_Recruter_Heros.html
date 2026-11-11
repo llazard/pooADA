@@ -183,6 +183,11 @@ public class NewHero {
     public String getRole() { return role; }
     public int getLevel() { return level; }
 }</code></pre>
+<p>Ajoutez enfin à <code>Json</code> la méthode <code>read</code>, fournie : Jackson lit le JSON du corps de la requête, et en fait un objet Java.</p>
+<pre><code>    // Exercice 3 : lit le JSON du corps de la requête, et en fait un objet Java.
+    public static &lt;T&gt; T read(HttpExchange exchange, Class&lt;T&gt; type) {
+        return mapper.readValue(exchange.getRequestBody(), type);
+    }</code></pre>
 <h2 id="la-consigne">La consigne</h2>
 <ol><li>Dans <code>HeroRepository</code>, écrivez <code>create(String name, String role, int level)</code>. C'est le repository qui donne l'id, à partir de 7, comme le ferait une base de données.</li><li>Dans <code>HeroService</code>, ajoutez <code>create</code>, qui passe la main au repository.</li><li>Dans le contrôleur, quand <code>exchange.getRequestMethod()</code> vaut <code>"POST"</code>, lisez le corps avec <code>Json.read(exchange, NewHero.class)</code> : Jackson construit le <code>NewHero</code>. Attendu : <code>{"id":7,"name":"Gandalf","role":"mage","level":20}</code>, code 201.</li><li>Sans <code>name</code> dans le corps, répondez 400 avec <code>{"error":"Le champ name est obligatoire"}</code>.</li><li><code>GET /heroes?role=mage</code> : Gandalf est là. Arrêtez le serveur, relancez, appelez à nouveau. Où est passé Gandalf ?</li></ol>
 <p>Pour explorer : les codes 200, 201 et 400 sur MDN, <a href="https://developer.mozilla.org/fr/docs/Web/HTTP/Status">https://developer.mozilla.org/fr/docs/Web/HTTP/Status</a></p>

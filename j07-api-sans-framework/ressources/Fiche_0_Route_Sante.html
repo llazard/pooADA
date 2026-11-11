@@ -198,11 +198,6 @@ public class Json {
             output.write(bytes);
         }
     }
-
-    // Exercice 3 : lit le JSON du corps de la requête, et en fait un objet Java.
-    public static &lt;T&gt; T read(HttpExchange exchange, Class&lt;T&gt; type) {
-        return mapper.readValue(exchange.getRequestBody(), type);
-    }
 }</code></pre>
 <aside class="encart encart-vert">
 <p><strong class="libelle">Astuce</strong> : avant de relancer <code>Main</code>, arrêtez le serveur précédent avec le carré rouge d'IntelliJ. Sinon : <code>BindException: Address already in use</code>, le port 8080 est déjà pris.</p>
