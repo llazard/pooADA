@@ -22,6 +22,23 @@ GET http://localhost:8080/health
 Avant de relancer `Main`, arrêtez le serveur précédent : sinon
 `BindException: Address already in use`, le port 8080 est déjà pris.
 
+## Le filtre dans l'adresse
+
+`demo-filtre/` : la même route de santé, avec un filtre. Ouvrez son `pom.xml` comme projet
+Maven, puis lancez `rpg.Main`, et tapez dans le navigateur :
+
+```
+http://localhost:8080/health?name=Lucie
+{"status":"ok Lucie"}   200
+```
+
+| Fichier | Ce qu'il fait |
+|---|---|
+| `rpg/service/HealthService.java` | le métier : `readName` lit le filtre, `status` rend `ok Lucie` |
+| `rpg/controller/HealthController.java` | lit la requête, appelle le service, choisit le code : sans filtre 200, filtre inconnu 400 |
+
+Le contrôleur de l'exercice 2 a la même forme : `/heroes?role=mage`.
+
 ## Les fiches
 
 À ouvrir dans un navigateur, dans `ressources/` :
@@ -41,5 +58,5 @@ Une branche par exercice, publiée après sa correction. Le projet corrigé est 
 | Branche | Contenu |
 |---|---|
 | `j07-exercice-1-heros-types` | le code fourni (`Hero` et `HeroRepository`), puis la correction de l'exercice 1, partie optionnelle comprise (`Role`, `/roles`) |
-| `j07-exercice-2-service-filtres` | part de l'exercice 1 : le service, les filtres, les tests, et la partie optionnelle `GET /heroes/2` |
+| `j07-exercice-2-service-filtres` | part de l'exercice 1 : le service, les filtres, les tests, et la partie optionnelle `GET /heroes/Merlin` |
 | `j07-exercice-3-recruter-heros` | part de l'exercice 2 : `POST /heroes` |
