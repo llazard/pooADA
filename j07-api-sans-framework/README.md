@@ -37,10 +37,10 @@ http://localhost:8080/health?name=Lucie
 
 | Fichier | Ce qu'il fait |
 |---|---|
-| `rpg/service/HealthService.java` | le métier : `readName` lit le filtre, `status` rend `ok Lucie` |
-| `rpg/controller/HealthController.java` | en commentaire : lit la requête, appelle le service, choisit le code (sans filtre 200, filtre inconnu 400) |
+| `rpg/service/HealthService.java` | le métier : `status` rend `ok Lucie` |
+| `rpg/controller/HealthController.java` | en commentaire : cherche le filtre dans la query avec sa méthode privée `readName`, appelle le service, choisit le code (sans filtre 200, filtre inconnu 400) |
 
-Le contrôleur de l'exercice 2 a la même forme : `/heroes?role=mage`.
+Le contrôleur de l'exercice 2 reprend `readName` telle quelle : `/heroes?name=merl`.
 
 ## Les fiches
 

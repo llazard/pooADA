@@ -34,11 +34,21 @@ public class HealthController implements HttpHandler {
     //         Json.send(exchange, 200, Map.of("status", "ok"));
     //         return;
     //     }
-    //     String name = service.readName(query);
+    //     String name = readName(query);
     //     if (name == null) {
     //         Json.send(exchange, 400, Map.of("error", "Filtre inconnu : " + query));
     //         return;
     //     }
     //     Json.send(exchange, 200, Map.of("status", service.status(name)));
+    // }
+    //
+    // // Cherche dans la query le filtre name : "name=Lucie" donne "Lucie".
+    // // Un autre filtre donne null.
+    // private String readName(String query) {
+    //     String[] filter = query.split("="); // ["name", "Lucie"]
+    //     if (filter[0].equals("name")) {
+    //         return filter[1];
+    //     }
+    //     return null;
     // }
 }
