@@ -73,13 +73,15 @@ public class HeroService {
         heroRepository.create(hero);
     }
 
-    // Exercice 2 : remplace le héros qui porte ce nom. Renvoie null s'il n'existe pas.
+    // Exercice 2 : remplace le héros qui porte ce nom, à la même place dans la liste.
+    // Renvoie null s'il n'existe pas.
     public Hero update(String name, Hero updated) {
         Hero hero = findOneByName(name);
         if (hero == null) {
             return null;
         }
-        heroRepository.update(hero, updated);
+        List<Hero> heroes = heroRepository.findAll();
+        heroes.set(heroes.indexOf(hero), updated);
         return updated;
     }
 
@@ -89,7 +91,7 @@ public class HeroService {
         if (hero == null) {
             return false;
         }
-        heroRepository.delete(hero);
+        heroRepository.findAll().remove(hero);
         return true;
     }
 
