@@ -57,6 +57,42 @@ public class HeroService {
         return result;
     }
 
+    // Exercice 2 : le héros qui porte exactement ce nom, sans tenir compte des majuscules,
+    // ou null.
+    public Hero findOneByName(String name) {
+        for (Hero hero : heroRepository.findAll()) {
+            if (hero.getName().equalsIgnoreCase(name)) {
+                return hero;
+            }
+        }
+        return null;
+    }
+
+    // Exercice 2 : ajouter un héros.
+    public void create(Hero hero) {
+        heroRepository.create(hero);
+    }
+
+    // Exercice 2 : remplace le héros qui porte ce nom. Renvoie null s'il n'existe pas.
+    public Hero update(String name, Hero updated) {
+        Hero hero = findOneByName(name);
+        if (hero == null) {
+            return null;
+        }
+        heroRepository.update(hero, updated);
+        return updated;
+    }
+
+    // Exercice 2 : supprime le héros qui porte ce nom. Renvoie false s'il n'existe pas.
+    public boolean delete(String name) {
+        Hero hero = findOneByName(name);
+        if (hero == null) {
+            return false;
+        }
+        heroRepository.delete(hero);
+        return true;
+    }
+
     // Partie optionnelle : chaque héros de la liste, avec la description de son type.
     public List<HeroDetail> withDetail(List<Hero> heroes) {
         List<HeroDetail> result = new ArrayList<>();

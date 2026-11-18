@@ -23,4 +23,19 @@ public class HeroRepository {
     public List<Hero> findAll() {
         return heroes;
     }
+
+    // Exercice 2 : ajoute un héros à la liste.
+    public void create(Hero hero) {
+        heroes.add(hero);
+    }
+
+    // Exercice 2 : remplace un héros par sa nouvelle version, à la même place.
+    public void update(Hero hero, Hero updated) {
+        heroes.set(heroes.indexOf(hero), updated);
+    }
+
+    // Exercice 2 : retire un héros de la liste.
+    public void delete(Hero hero) {
+        heroes.remove(hero);
+    }
 }
