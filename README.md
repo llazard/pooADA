@@ -8,6 +8,7 @@ avec son propre README.
 | [`j03-tests-unitaires/`](j03-tests-unitaires/) | J3 : les tests unitaires avec JUnit 5, la démo de la calculatrice |
 | [`j05-poo-en-pratique/`](j05-poo-en-pratique/) | J5 : la POO en pratique, les quatre piliers, l'héritage et les interfaces |
 | [`j07-api-sans-framework/`](j07-api-sans-framework/) | J7 : une API à la main, un serveur Java sans framework, et sa route de santé |
+| [`j08-spring-boot/`](j08-spring-boot/) | J8 : la même API, en Spring Boot, et la route de santé avec son filtre |
 
 ## Organisation des branches
 
@@ -17,7 +18,7 @@ branche, préfixée par sa journée : elle ajoute la fiche et le code fourni, pu
 
 | Branche | Contenu |
 |---|---|
-| `main` | les cours et les démos : la calculatrice du J3, les animaux du J5, la route de santé du J7, et son filtre en commentaire |
+| `main` | les cours et les démos : la calculatrice du J3, les animaux du J5, la route de santé du J7, et son filtre en commentaire, la route de santé du J8, et son filtre |
 | `j03-exercice-1-fizzbuzz` | J3 : FizzBuzz, puis la règle Qix, testés avec JUnit |
 | `j03-exercice-2-mot-de-passe` | J3 : le mot de passe, testé avec JUnit |
 | `j03-exercice-3-chiffres-romains` | J3 : les chiffres romains, testés avec JUnit |
@@ -27,6 +28,8 @@ branche, préfixée par sa journée : elle ajoute la fiche et le code fourni, pu
 | `j05-exercice-4-panier` | J5 : le panier, la surcharge de méthodes et de constructeurs |
 | `j07-exercice-1-heros-types` | J7 : `GET /heroes`, et en option `GET /roles` |
 | `j07-exercice-2-service-filtres` | J7 : le service, les filtres `?name=` et `?role=`. Part de l'exercice 1 |
+| `j08-exercice-1-heros-filtres` | J8 : `GET /heroes` et ses filtres, jusqu'aux deux à la fois, et en option `/roles` et `/heroeswithdetail` |
+| `j08-exercice-2-ajouter-modifier-supprimer` | J8 : `POST`, `PUT` et `DELETE` sur `/heroes`. Part de l'exercice 1 |
 
 Pour récupérer une correction :
 
