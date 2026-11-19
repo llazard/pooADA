@@ -21,10 +21,10 @@ public class HeroService {
     }
 
     // Les héros dont le nom contient le texte cherché, sans tenir compte des majuscules.
-    public List<Hero> findByName(String text) {
+    public List<Hero> findByName(String name) {
         List<Hero> result = new ArrayList<>();
         for (Hero hero : heroRepository.findAll()) {
-            if (hero.getName().toLowerCase().contains(text.toLowerCase())) {
+            if (hero.getName().toLowerCase().contains(name.toLowerCase())) {
                 result.add(hero);
             }
         }
@@ -42,10 +42,10 @@ public class HeroService {
     }
 
     // Les deux filtres à la fois : le nom contient le texte, et le rôle correspond.
-    public List<Hero> findByNameAndRole(String text, String role) {
+    public List<Hero> findByNameAndRole(String name, String role) {
         List<Hero> result = new ArrayList<>();
         for (Hero hero : heroRepository.findAll()) {
-            if (hero.getName().toLowerCase().contains(text.toLowerCase())
+            if (hero.getName().toLowerCase().contains(name.toLowerCase())
                     && hero.getRole().equalsIgnoreCase(role)) {
                 result.add(hero);
             }
