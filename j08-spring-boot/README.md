@@ -38,5 +38,7 @@ dossier par le code de l'exercice.
 
 | Branche | Contenu |
 |---|---|
-| `j08-exercice-1-heros-filtres` | `GET /heroes` et ses filtres `?name=`, `?role=`, et les deux à la fois. Partie optionnelle : `GET /roles`, `GET /roles?name=`, `GET /heroeswithdetail` |
-| `j08-exercice-2-ajouter-modifier-supprimer` | part de l'exercice 1 : `POST /heroes`, `PUT /heroes/{name}`, `DELETE /heroes/{name}` |
+| `j08-exercice-1-heros-filtres-sans-optionnel` | `GET /heroes` et ses filtres `?name=`, `?role=`, et les deux à la fois |
+| `j08-exercice-1-heros-filtres` | la même, avec la partie optionnelle : `GET /roles`, `GET /roles?name=`, et `GET /heroeswithdetail`, chaque héros avec la description de son type : `{"hero":{…},"description":…}` |
+| `j08-exercice-2-ajouter-modifier-supprimer-sans-optionnel` | part de l'exercice 1 sans la partie optionnelle : `POST /heroes`, `PUT /heroes/{name}`, `DELETE /heroes/{name}` |
+| `j08-exercice-2-ajouter-modifier-supprimer` | la même, sur l'exercice 1 avec sa partie optionnelle |
